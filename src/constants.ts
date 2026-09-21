@@ -19,7 +19,24 @@ export const PORTFOLIO_DATA = {
   stats: [
     { label: "TOTAL PROJECTS", value: 22, suffix: "+", desc: "Innovative web solutions crafted" },
     { label: "CERTIFICATES", value: 12, suffix: "+", desc: "Professional skills validated" },
-    { label: "YEARS OF EXPERIENCE", value: 1, suffix: "+", desc: "Continuous learning journey" },
+    { label: "YEARS OF EXPERIENCE", value: 1, suffix: "+", desc: "Active in Tech & IT" },
+  ],
+  experience: [
+    {
+      role: "Digital Marketing and IT Executive",
+      company: "Tahmid IT Park",
+      location: "Dhaka, Bangladesh",
+      period: "Nov 2025 - Present",
+      type: "Full-Time",
+      current: true,
+      description: "Spearheading digital marketing campaigns, SEO growth, and managing IT infrastructure & tech support.",
+      responsibilities: [
+        "Digital Marketing & SEO: Execute targeted campaigns, social media growth, and organic search optimization.",
+        "IT Operations: Manage workstation setups, system administration, and technical network troubleshooting.",
+        "Performance & Analytics: Track user engagement, conversion metrics, and optimize technical workflows."
+      ],
+      skills: ["Digital Marketing", "IT Operations", "SEO", "System Admin", "Social Strategy", "Analytics", "Tech Support"]
+    }
   ],
   education: [
     { 

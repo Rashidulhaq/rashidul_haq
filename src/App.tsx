@@ -8,6 +8,7 @@ import Preloader from "./components/Preloader";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Projects from "./components/Projects";
 import Certificates from "./components/Certificates";
@@ -220,6 +221,7 @@ export default function App() {
                       onShowResume={() => toggleView("resume")} 
                       onSetPortfolioTab={handleSetPortfolioTab}
                     />
+                    <Experience onShowResume={() => toggleView("resume")} />
                     <Education />
                     <Projects onShowComingSoon={() => toggleView("live")} />
                     <Certificates />

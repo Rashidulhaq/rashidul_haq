@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence, useInView, animate } from "motion/react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { 
   Camera, 
@@ -17,9 +17,31 @@ import {
   Landmark, 
   TreePine, 
   Quote,
-  Check
+  Check,
+  Maximize2
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "../constants";
+
+function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: false, margin: "-60px" });
+  
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(0, value, {
+        duration: 1.4,
+        ease: [0.16, 1, 0.3, 1],
+        onUpdate: (latest) => setCount(Math.floor(latest)),
+      });
+      return () => controls.stop();
+    } else {
+      setCount(0);
+    }
+  }, [inView, value]);
+
+  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+}
 
 interface DestinationMeta {
   key: string;
@@ -255,7 +277,7 @@ export default function TourGallery() {
             className="relative inline-block"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
-              Life Beyond <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block">The Screen</span>
+              Life Beyond <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">The Screen</span>
             </h2>
             <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
             <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
@@ -273,49 +295,103 @@ export default function TourGallery() {
         </motion.div>
 
         {/* ========================================================= */}
-        {/* INTERACTIVE TRAVEL & IMPACT HIGHLIGHT CHIPS                */}
+        {/* INTERACTIVE TRAVEL & IMPACT HIGHLIGHT METRIC CARDS        */}
         {/* ========================================================= */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-12">
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border border-white/[0.08] backdrop-blur-xl flex items-center gap-3 shadow-lg">
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 shrink-0">
-              <MapPin size={18} />
-            </div>
-            <div>
-              <p className="text-white font-extrabold text-sm sm:text-base leading-tight">9 Destinations</p>
-              <p className="text-slate-400 text-[11px]">Across Bangladesh</p>
-            </div>
-          </div>
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.1 } }
+          }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mb-12"
+        >
+          {[
+            {
+              title: "Across Bangladesh",
+              value: 9,
+              suffix: "",
+              label: "Destinations",
+              icon: MapPin,
+              color: "from-cyan-400 to-cyan-600",
+              glow: "rgba(6,182,212,0.25)"
+            },
+            {
+              title: "Priofull Slum School",
+              value: 1,
+              suffix: " Year",
+              label: "Volunteer Teacher",
+              icon: Heart,
+              color: "from-amber-400 to-rose-500",
+              glow: "rgba(245,158,11,0.25)",
+              featured: true
+            },
+            {
+              title: "Hills, Coral & Mangroves",
+              value: 3,
+              suffix: " Realms",
+              label: "Peaks to Coasts",
+              icon: Mountain,
+              color: "from-indigo-400 to-purple-600",
+              glow: "rgba(99,102,241,0.25)"
+            },
+            {
+              title: "Moments & Real Stories",
+              value: 100,
+              suffix: "%",
+              label: "Visual Journal",
+              icon: Camera,
+              color: "from-emerald-400 to-teal-600",
+              glow: "rgba(16,185,129,0.25)"
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={item.label}
+              variants={{
+                hidden: { opacity: 0, y: 30, scale: 0.88, filter: "blur(8px)" },
+                visible: { 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1, 
+                  filter: "blur(0px)",
+                  transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.06 } 
+                }
+              }}
+              whileHover={{ 
+                y: -8, 
+                scale: 1.03,
+                rotateX: 4,
+                rotateY: 4,
+                transition: { type: "spring", stiffness: 350, damping: 16 }
+              }}
+              className={`p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border backdrop-blur-xl flex items-center gap-3 shadow-lg relative overflow-hidden group transition-all duration-300 ${
+                item.featured 
+                  ? "border-amber-500/30 hover:border-amber-400/60 shadow-[0_0_20px_rgba(245,158,11,0.1)]" 
+                  : "border-white/[0.08] hover:border-cyan-400/40"
+              }`}
+            >
+              {/* Shimmer light sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.06] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border border-amber-500/30 backdrop-blur-xl flex items-center gap-3 shadow-[0_0_20px_rgba(245,158,11,0.08)]">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0">
-              <Heart size={18} className="fill-amber-400/20" />
-            </div>
-            <div>
-              <p className="text-amber-300 font-extrabold text-sm sm:text-base leading-tight">1 Year Volunteer</p>
-              <p className="text-slate-400 text-[11px]">Priofull Slum School</p>
-            </div>
-          </div>
+              {/* Corner ambient glow */}
+              <div 
+                className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"
+                style={{ backgroundColor: item.glow }}
+              />
 
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border border-white/[0.08] backdrop-blur-xl flex items-center gap-3 shadow-lg">
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-400/20 flex items-center justify-center text-indigo-400 shrink-0">
-              <Mountain size={18} />
-            </div>
-            <div>
-              <p className="text-white font-extrabold text-sm sm:text-base leading-tight">Peaks to Coasts</p>
-              <p className="text-slate-400 text-[11px]">Hills, Coral & Mangroves</p>
-            </div>
-          </div>
-
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border border-white/[0.08] backdrop-blur-xl flex items-center gap-3 shadow-lg">
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-400/20 flex items-center justify-center text-emerald-400 shrink-0">
-              <Camera size={18} />
-            </div>
-            <div>
-              <p className="text-white font-extrabold text-sm sm:text-base leading-tight">Visual Journal</p>
-              <p className="text-slate-400 text-[11px]">Moments & Stories</p>
-            </div>
-          </div>
-        </div>
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} bg-opacity-20 border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-110 transition-transform`}>
+                <item.icon size={18} className={item.featured ? "fill-white/20" : ""} />
+              </div>
+              <div className="relative z-10 min-w-0">
+                <p className="text-white font-extrabold text-sm sm:text-base leading-tight flex items-baseline gap-1">
+                  <Counter value={item.value} suffix={item.suffix} />
+                </p>
+                <p className="text-slate-400 text-[11px] truncate">{item.title}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
         {/* ========================================================= */}
         {/* INTERACTIVE DESTINATION ROUTE BAR                         */}
@@ -457,28 +533,61 @@ export default function TourGallery() {
                 return (
                   <motion.article
                     key={dest.key}
-                    initial={{ opacity: 0, y: 25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: index * 0.08 }}
-                    whileHover={{ y: -7 }}
+                    initial={{ opacity: 0, y: 45, scale: 0.9, filter: "blur(10px)" }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                    viewport={{ once: false, margin: "-50px" }}
+                    transition={{ 
+                      type: "spring", 
+                      stiffness: 140, 
+                      damping: 14, 
+                      delay: (index % 3) * 0.08 
+                    }}
+                    whileHover={{ 
+                      y: -12, 
+                      scale: 1.025, 
+                      rotateX: 3, 
+                      rotateY: 3,
+                      transition: { type: "spring", stiffness: 350, damping: 18 } 
+                    }}
                     onClick={() => handleDestinationClick(dest)}
                     className={`group relative flex flex-col h-full rounded-3xl overflow-hidden bg-[#090d18]/90 backdrop-blur-2xl border transition-all duration-500 cursor-pointer shadow-xl ${
                       isPriofull
-                        ? "border-amber-500/40 hover:border-amber-400 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_25px_rgba(245,158,11,0.15)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_35px_rgba(245,158,11,0.3)]"
-                        : "border-white/[0.08] hover:border-cyan-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_25px_rgba(6,182,212,0.18)]"
+                        ? "border-amber-500/40 hover:border-amber-400 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_25px_rgba(245,158,11,0.15)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_35px_rgba(245,158,11,0.35)]"
+                        : "border-white/[0.08] hover:border-cyan-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(6,182,212,0.22)]"
                     }`}
                   >
+                    {/* Light sweep shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/[0.08] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
+
+                    {/* Corner Ambient Glow */}
+                    <div className={`absolute -inset-1 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${
+                      isPriofull 
+                        ? "bg-gradient-to-br from-amber-500/25 via-rose-500/15 to-transparent" 
+                        : "bg-gradient-to-br from-cyan-500/20 via-indigo-500/15 to-transparent"
+                    }`} />
+
                     {/* Top Image Preview with Ken Burns Hover */}
                     <div className="aspect-[16/10] overflow-hidden relative bg-[#040812]">
                       <img
                         src={getImageUrl(coverImage)}
                         alt={dest.name}
-                        className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         referrerPolicy="no-referrer"
                         loading="lazy"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#090d18] via-transparent to-transparent opacity-75" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#090d18] via-transparent to-transparent opacity-85" />
+
+                      {/* Interactive View Album overlay on hover */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/35 backdrop-blur-[2px] z-10">
+                        <span className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300 ${
+                          isPriofull 
+                            ? "bg-amber-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.5)]" 
+                            : "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.5)]"
+                        }`}>
+                          <Eye size={14} />
+                          <span>Explore Story</span>
+                        </span>
+                      </div>
 
                       {/* Top Badges */}
                       <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-10">
@@ -500,14 +609,14 @@ export default function TourGallery() {
                       </div>
 
                       {/* Region Tag */}
-                      <div className="absolute bottom-3 left-4 text-xs font-semibold text-slate-300 flex items-center gap-1.5 drop-shadow">
+                      <div className="absolute bottom-3 left-4 text-xs font-semibold text-slate-300 flex items-center gap-1.5 drop-shadow z-10">
                         <MapPin size={13} className={isPriofull ? "text-amber-400" : "text-cyan-400"} />
                         <span>{dest.region}</span>
                       </div>
                     </div>
 
                     {/* Card Content */}
-                    <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between space-y-4">
+                    <div className="p-5 sm:p-6 flex flex-col flex-grow justify-between space-y-4 relative z-10">
                       <div className="space-y-2">
                         <h3 className={`text-lg sm:text-xl font-display font-extrabold transition-colors leading-tight ${
                           isPriofull 

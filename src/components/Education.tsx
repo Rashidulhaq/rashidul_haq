@@ -83,17 +83,17 @@ export default function Education() {
           variants={{
             visible: { transition: { staggerChildren: 0.15 } }
           }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.9 },
               visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
             }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand/10 border border-brand/25 text-brand-light text-[11px] font-semibold tracking-wider uppercase mb-3 backdrop-blur-md shadow-[0_0_20px_rgba(99,102,241,0.15)]"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[11px] font-semibold tracking-wider uppercase mb-3.5 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.12)]"
           >
-            <GraduationCap size={13} className="text-brand-light" />
-            <span>Academic Path</span>
+            <GraduationCap size={13} className="text-cyan-400" />
+            <span>Academic Path • Qualifications</span>
           </motion.div>
 
           <motion.div
@@ -103,11 +103,11 @@ export default function Education() {
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white tracking-tight">
-              Education <span className="bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#ec4899] bg-clip-text text-transparent inline-block">Timeline</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+              Education <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Timeline</span>
             </h2>
-            <div className="absolute -inset-4 bg-brand/20 blur-2xl rounded-full opacity-40 -z-10" />
-            <div className="w-12 h-0.5 bg-gradient-to-r from-[#6366f1] to-[#ec4899] rounded-full mx-auto mt-3 opacity-70" />
+            <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
+            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
           </motion.div>
 
           <motion.p 
@@ -115,9 +115,9 @@ export default function Education() {
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="text-white/50 text-sm md:text-[15px] font-normal max-w-xl mx-auto mt-3 tracking-wide"
+            className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
           >
-            My academic journey and milestones that shaped my technical foundation.
+            My academic journey and educational milestones that built a rigorous engineering foundation.
           </motion.p>
         </motion.div>
 

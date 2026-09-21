@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowLeft, Download, Mail, Phone, MapPin, Globe, Linkedin, Github, Award, BookOpen, Briefcase, Star, Facebook } from "lucide-react";
+import { ArrowLeft, Download, Mail, Phone, MapPin, Globe, Linkedin, Github, Award, BookOpen, Briefcase, Star, Facebook, Building2, Calendar, CheckCircle2, Sparkles } from "lucide-react";
 import { PORTFOLIO_DATA } from "../constants";
 
 interface ResumeProps {
@@ -150,6 +150,95 @@ const Resume: React.FC<ResumeProps> = ({ onBack }) => {
                 <p className="text-white/50 text-base leading-relaxed">
                   "To become a successful expert in the field of Computer Technology by challenging my technical knowledge and skills to ensure personal and professional growth and to contribute to the prosperity of the organization."
                 </p>
+              </section>
+
+              {/* Work Experience (Professional Journey) */}
+              <section className="relative">
+                <div className="flex items-center justify-between mb-8">
+                  <h3 className="text-white font-display font-black text-xs uppercase tracking-[0.3em] flex items-center gap-3">
+                    <Briefcase size={18} className="text-cyan-400" /> Professional Experience
+                  </h3>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    Currently Employed
+                  </span>
+                </div>
+
+                <div className="space-y-6">
+                  {PORTFOLIO_DATA.experience?.map((exp, i) => (
+                    <div 
+                      key={i} 
+                      className="relative p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-cyan-500/[0.08] via-white/[0.02] to-indigo-500/[0.05] border border-cyan-500/25 hover:border-cyan-400/50 shadow-xl backdrop-blur-sm transition-all duration-300 group"
+                    >
+                      {/* Top Corner Glow */}
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none -z-10 group-hover:bg-cyan-500/20 transition-colors" />
+
+                      {/* Header row */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                        <div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h4 className="text-white font-display font-extrabold text-base sm:text-lg group-hover:text-cyan-300 transition-colors">
+                              {exp.role}
+                            </h4>
+                            <span className="px-2 py-0.5 rounded-md bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-[10px] font-bold uppercase tracking-wider">
+                              {exp.type}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-3 text-slate-400 text-xs mt-1">
+                            <span className="font-semibold text-white/90 flex items-center gap-1.5">
+                              <Building2 size={13} className="text-cyan-400" />
+                              {exp.company}
+                            </span>
+                            <span>•</span>
+                            <span className="flex items-center gap-1">
+                              <MapPin size={12} className="text-slate-400" />
+                              {exp.location}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="self-start sm:self-auto">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-cyan-300 text-[11px] font-bold tracking-wider">
+                            <Calendar size={12} className="text-cyan-400" />
+                            {exp.period}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-white/60 text-xs sm:text-[13px] leading-relaxed mb-4">
+                        {exp.description}
+                      </p>
+
+                      {/* Key Responsibilities */}
+                      <div className="space-y-2 mb-5">
+                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
+                          Key Responsibilities & Contributions:
+                        </p>
+                        <ul className="space-y-2">
+                          {exp.responsibilities.map((resp, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-xs text-white/70 leading-relaxed">
+                              <CheckCircle2 size={14} className="text-cyan-400 shrink-0 mt-0.5" />
+                              <span>{resp}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Skill Tags */}
+                      <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                        {exp.skills.map((skill) => (
+                          <span 
+                            key={skill} 
+                            className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/10 text-[10px] font-semibold text-white/75 group-hover:border-cyan-500/25 transition-colors"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </section>
 
               {/* Education */}
