@@ -1,0 +1,8 @@
+{
+  "name": "Rashidul Haq Portfolio",
+  "description": "A premium, modern responsive single-page portfolio for Rashidul Haq featuring smooth scrolling, animations, and a sleek dark theme.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
