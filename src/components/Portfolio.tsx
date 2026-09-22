@@ -303,8 +303,8 @@ export default function Portfolio({
           
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -532,10 +532,10 @@ export default function Portfolio({
                       <span className="text-[7px] md:text-[9px] font-bold text-white uppercase tracking-tighter">Verified</span>
                     </div>
 
-                    {/* Hover Inspect Overlay with View Full text */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-black/50 backdrop-blur-xs">
-                      <span className="px-3 py-1.5 rounded-xl bg-white/10 border border-white/20 text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-2xl">
-                        <Maximize2 size={12} /> View Full
+                    {/* Hover Inspect Overlay with View Full text - Crystal Clear */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-gradient-to-t from-black/75 via-black/20 to-black/35 pointer-events-none">
+                      <span className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 font-bold text-[11px] flex items-center gap-1.5 shadow-[0_0_20px_rgba(245,158,11,0.6)] transform scale-90 group-hover/img:scale-100 transition-all duration-300 pointer-events-auto">
+                        <Maximize2 size={12} strokeWidth={2.5} /> View Full
                       </span>
                     </div>
                   </div>

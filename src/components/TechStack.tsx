@@ -153,8 +153,8 @@ export default function TechStack() {
           
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -191,21 +191,18 @@ export default function TechStack() {
             <motion.div
               key={stat.title}
               variants={{
-                hidden: { opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" },
+                hidden: { opacity: 0, y: 25, scale: 0.95 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  filter: "blur(0px)",
                   transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.08 }
                 }
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.03,
-                rotateX: 4,
-                rotateY: 4,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                y: -5, 
+                scale: 1.015,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               className="relative p-5 rounded-2xl bg-[#090e1c]/80 border border-white/10 hover:border-cyan-400/40 backdrop-blur-xl flex items-center gap-4 group transition-all duration-500 overflow-hidden shadow-xl"
             >
@@ -382,8 +379,8 @@ export default function TechStack() {
                 <motion.div
                   key={tech.name}
                   layout
-                  initial={{ opacity: 0, y: 35, scale: 0.86, filter: "blur(8px)" }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 25, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.85, y: 15 }}
                   viewport={{ once: false, margin: "-40px" }}
                   transition={{ 
@@ -394,11 +391,9 @@ export default function TechStack() {
                     layout: { duration: 0.3 }
                   }}
                   whileHover={{ 
-                    y: -10, 
-                    scale: 1.04,
-                    rotateX: 4,
-                    rotateY: 4,
-                    transition: { type: "spring", stiffness: 350, damping: 18 } 
+                    y: -6, 
+                    scale: 1.02,
+                    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } 
                   }}
                   className="group relative bg-[#090d18]/85 hover:bg-[#0d1424] backdrop-blur-xl border border-white/[0.08] hover:border-cyan-400/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center transition-all duration-300 shadow-xl overflow-hidden cursor-default"
                 >
@@ -435,8 +430,8 @@ export default function TechStack() {
 
         {/* Software Engineering & QA Specialization Strip with Spring Entry */}
         <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.95, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 25, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ type: "spring", stiffness: 140, damping: 16 }}
           className="p-6 sm:p-8 rounded-[1.8rem] bg-gradient-to-b from-[#0b1020]/95 via-[#080d1a] to-[#050812] border border-white/10 hover:border-cyan-400/30 shadow-2xl relative overflow-hidden group"

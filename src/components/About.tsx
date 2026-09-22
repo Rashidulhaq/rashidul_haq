@@ -88,12 +88,11 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 50, scale: 0.8, filter: "blur(12px)" },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: { 
       opacity: 1, 
       y: 0,
       scale: 1,
-      filter: "blur(0px)",
       transition: { 
         type: "spring",
         stiffness: 120,
@@ -143,8 +142,8 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -189,8 +188,8 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                 >
                   <motion.span 
                     variants={{
-                      hidden: { opacity: 0, x: -60, filter: "blur(10px)" },
-                      visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] } }
+                      hidden: { opacity: 0, x: -30 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
                     }}
                     className="block shadow-sm"
                   >
@@ -198,8 +197,8 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                   </motion.span>
                   <motion.span 
                     variants={{
-                      hidden: { opacity: 0, x: -60, filter: "blur(10px)" },
-                      visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] } }
+                      hidden: { opacity: 0, x: -30 },
+                      visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] } }
                     }}
                     className="block text-white/90"
                   >
@@ -258,8 +257,8 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ 
                     scale: 1.02, 
-                    y: -4,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                    y: -2,
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
                   whileTap={{ scale: 0.98 }}
                   className="relative px-8 md:px-10 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#4f46e5]/20 hover:border-[#4f46e5]/50 transition-colors group overflow-hidden w-full sm:w-auto"
@@ -281,8 +280,8 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ 
                     scale: 1.02, 
-                    y: -4,
-                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                    y: -2,
+                    transition: { duration: 0.2, ease: "easeOut" }
                   }}
                   whileTap={{ scale: 0.98 }}
                   className="relative px-8 md:px-10 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#ec4899]/20 hover:border-[#ec4899]/50 transition-colors group overflow-hidden pointer-events-auto w-full sm:w-auto"
@@ -370,11 +369,9 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
               key={i}
               variants={itemVariants}
               whileHover={{ 
-                y: -15,
-                scale: 1.05,
-                rotateX: 5,
-                rotateY: 5,
-                transition: { type: "spring", stiffness: 300, damping: 15 }
+                y: -6,
+                scale: 1.02,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               onClick={() => {
                 stat.onClick?.();

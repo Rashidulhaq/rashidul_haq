@@ -271,8 +271,8 @@ export default function TourGallery() {
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -349,21 +349,18 @@ export default function TourGallery() {
             <motion.div
               key={item.label}
               variants={{
-                hidden: { opacity: 0, y: 30, scale: 0.88, filter: "blur(8px)" },
+                hidden: { opacity: 0, y: 25, scale: 0.95 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  filter: "blur(0px)",
                   transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.06 } 
                 }
               }}
               whileHover={{ 
-                y: -8, 
-                scale: 1.03,
-                rotateX: 4,
-                rotateY: 4,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                y: -5, 
+                scale: 1.015,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               className={`p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border backdrop-blur-xl flex items-center gap-3 shadow-lg relative overflow-hidden group transition-all duration-300 ${
                 item.featured 
@@ -493,10 +490,10 @@ export default function TourGallery() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
 
-                    {/* Hover Eye Action */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-12 h-12 rounded-full bg-cyan-500/80 backdrop-blur-md flex items-center justify-center text-white shadow-[0_0_25px_rgba(6,182,212,0.6)]">
-                        <Eye size={20} />
+                    {/* Hover Eye Action - Crisp, Clear, Glowing */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-black/25">
+                      <div className="w-12 h-12 rounded-full bg-cyan-500 flex items-center justify-center text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.8)] transform scale-90 group-hover:scale-100 transition-all duration-300">
+                        <Eye size={20} strokeWidth={2.5} />
                       </div>
                     </div>
 
@@ -533,8 +530,8 @@ export default function TourGallery() {
                 return (
                   <motion.article
                     key={dest.key}
-                    initial={{ opacity: 0, y: 45, scale: 0.9, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: false, margin: "-50px" }}
                     transition={{ 
                       type: "spring", 
@@ -543,11 +540,9 @@ export default function TourGallery() {
                       delay: (index % 3) * 0.08 
                     }}
                     whileHover={{ 
-                      y: -12, 
-                      scale: 1.025, 
-                      rotateX: 3, 
-                      rotateY: 3,
-                      transition: { type: "spring", stiffness: 350, damping: 18 } 
+                      y: -7, 
+                      scale: 1.015, 
+                      transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } 
                     }}
                     onClick={() => handleDestinationClick(dest)}
                     className={`group relative flex flex-col h-full rounded-3xl overflow-hidden bg-[#090d18]/90 backdrop-blur-2xl border transition-all duration-500 cursor-pointer shadow-xl ${
@@ -577,12 +572,12 @@ export default function TourGallery() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#090d18] via-transparent to-transparent opacity-85" />
 
-                      {/* Interactive View Album overlay on hover */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/35 backdrop-blur-[2px] z-10">
-                        <span className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-2xl transform scale-90 group-hover:scale-100 transition-transform duration-300 ${
+                      {/* Interactive View Album overlay on hover - Crystal Clear, No Blur */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-t from-black/75 via-black/20 to-black/30 z-10 pointer-events-none">
+                        <span className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-2xl transform scale-90 group-hover:scale-100 transition-all duration-300 pointer-events-auto ${
                           isPriofull 
-                            ? "bg-amber-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.5)]" 
-                            : "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.5)]"
+                            ? "bg-amber-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.6)]" 
+                            : "bg-cyan-500 text-slate-950 shadow-[0_0_20px_rgba(6,182,212,0.6)]"
                         }`}>
                           <Eye size={14} />
                           <span>Explore Story</span>

@@ -57,8 +57,8 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -123,21 +123,18 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
             <motion.div
               key={item.label}
               variants={{
-                hidden: { opacity: 0, y: 25, scale: 0.9, filter: "blur(6px)" },
+                hidden: { opacity: 0, y: 25, scale: 0.95 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  filter: "blur(0px)",
                   transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.08 }
                 }
               }}
               whileHover={{ 
-                y: -6, 
-                scale: 1.03,
-                rotateX: 4,
-                rotateY: 4,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                y: -5, 
+                scale: 1.015,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               className="p-3.5 sm:p-4 rounded-2xl bg-[#090e1c]/80 border border-white/[0.08] hover:border-cyan-400/40 backdrop-blur-xl flex items-center gap-3 shadow-lg relative overflow-hidden group transition-all duration-300"
             >
@@ -168,8 +165,8 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
           {previewPosts.map((post, index) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 45, scale: 0.88, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: false, margin: "-50px" }}
               transition={{ 
                 type: "spring", 
@@ -178,11 +175,9 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
                 delay: index * 0.1 
               }}
               whileHover={{ 
-                y: -12, 
-                scale: 1.025,
-                rotateX: 3,
-                rotateY: 3,
-                transition: { type: "spring", stiffness: 350, damping: 18 } 
+                y: -7, 
+                scale: 1.015,
+                transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } 
               }}
               onClick={onShowFullBlog}
               className="group relative flex flex-col h-full rounded-2xl overflow-hidden bg-[#090d18]/90 border border-white/[0.08] hover:border-cyan-400/50 shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(6,182,212,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer"
@@ -203,10 +198,10 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#090d18] via-transparent to-transparent opacity-80" />
 
-                {/* Hover Read Badge */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 backdrop-blur-[2px] z-10">
-                  <span className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.6)] transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                    <Eye size={14} />
+                {/* Hover Read Badge - Crystal Clear, Sharp & Attractive */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-gradient-to-t from-black/75 via-black/20 to-black/30 z-10 pointer-events-none">
+                  <span className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs flex items-center gap-2 shadow-[0_0_25px_rgba(6,182,212,0.65)] transform scale-90 group-hover:scale-100 transition-all duration-300 pointer-events-auto">
+                    <Eye size={14} strokeWidth={2.5} />
                     <span>Read Full Post</span>
                   </span>
                 </div>

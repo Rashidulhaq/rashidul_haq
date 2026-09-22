@@ -204,8 +204,8 @@ export default function Projects({
             
             <motion.div 
               variants={{
-                hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-                visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
               }}
               className="relative inline-block"
             >
@@ -364,7 +364,7 @@ export default function Projects({
                     <motion.div 
                       key={idx}
                       whileHover={{ x: 4 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
                       className="flex items-start gap-2.5 p-1.5 -ml-1.5 rounded-lg hover:bg-white/[0.03] transition-colors"
                     >
                       <div className="w-4 h-4 rounded-full border border-cyan-400 bg-cyan-500/10 shadow-[0_0_8px_rgba(6,182,212,0.4)] flex items-center justify-center text-cyan-300 shrink-0 mt-0.5">
@@ -458,8 +458,8 @@ export default function Projects({
           
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -524,21 +524,18 @@ export default function Projects({
             <motion.div
               key={stat.title}
               variants={{
-                hidden: { opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" },
+                hidden: { opacity: 0, y: 30, scale: 0.95 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  filter: "blur(0px)",
                   transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.08 }
                 }
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.03,
-                rotateX: 4,
-                rotateY: 4,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                y: -5, 
+                scale: 1.015,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               className="relative p-5 rounded-2xl bg-[#090e1c]/80 border border-white/10 hover:border-cyan-400/40 backdrop-blur-xl flex items-center gap-4 group transition-all duration-500 overflow-hidden shadow-xl"
             >
@@ -767,9 +764,9 @@ export default function Projects({
                   <motion.div
                     key={project.title}
                     layout
-                    initial={{ opacity: 0, y: 45, scale: 0.86, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 0.88, y: 20, filter: "blur(6px)" }}
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 15 }}
                     viewport={{ once: false, margin: "-50px" }}
                     transition={{ 
                       type: "spring",
@@ -779,11 +776,9 @@ export default function Projects({
                       layout: { duration: 0.35, ease: "easeOut" }
                     }}
                     whileHover={{ 
-                      y: -12, 
-                      scale: 1.02,
-                      rotateX: 3,
-                      rotateY: 3,
-                      transition: { type: "spring", stiffness: 350, damping: 18 } 
+                      y: -7, 
+                      scale: 1.015,
+                      transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } 
                     }}
                     className="glossy-card rounded-[1.4rem] overflow-hidden group border border-white/10 hover:border-cyan-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(6,182,212,0.25)] transition-all duration-500 flex flex-col h-full shadow-2xl relative bg-[#090d16]/85 backdrop-blur-xl"
                   >
@@ -807,7 +802,7 @@ export default function Projects({
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-108"
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/20 to-transparent opacity-80 group-hover/img:opacity-50 transition-opacity" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-dark/95 via-dark/20 to-transparent opacity-80 group-hover/img:opacity-40 transition-opacity" />
                       
                       {/* Category Pill Over Image with Live Pulsing Beacon */}
                       <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-full bg-[#050914]/90 backdrop-blur-md border border-cyan-500/30 flex items-center gap-1.5 shadow-md">
@@ -817,14 +812,14 @@ export default function Projects({
                         </span>
                       </div>
 
-                      {/* Hover Inspect Icon Badge */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-dark/40 backdrop-blur-xs">
+                      {/* Hover Inspect Icon Badge - Crystal Clear, Sharp & Attractive */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-gradient-to-t from-black/75 via-black/25 to-black/35 pointer-events-none">
                         <motion.span 
                           whileHover={{ scale: 1.08 }}
                           whileTap={{ scale: 0.95 }}
-                          className="px-3 py-1.5 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 text-xs font-semibold flex items-center gap-1.5 shadow-2xl backdrop-blur-md"
+                          className="px-4 py-2 rounded-xl bg-cyan-500 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-[0_0_25px_rgba(6,182,212,0.65)] transform scale-90 group-hover/img:scale-100 transition-all duration-300 pointer-events-auto"
                         >
-                          <Maximize2 size={13} /> View Details
+                          <Maximize2 size={13} strokeWidth={2.5} /> View Details
                         </motion.span>
                       </div>
                     </div>

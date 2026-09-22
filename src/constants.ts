@@ -17,7 +17,7 @@ export const PORTFOLIO_DATA = {
   title_skills: ["Software Engineer", "Frontend Developer", "BSc. Engineer", "Tech Enthusiast"],
   bio: "Passionate Software Engineer with a focus on building scalable web applications and AI-driven solutions. Experienced in full-stack development and quality assurance.",
   stats: [
-    { label: "TOTAL PROJECTS", value: 22, suffix: "+", desc: "Innovative web solutions crafted" },
+    { label: "TOTAL PROJECTS", value: 23, suffix: "+", desc: "Innovative web solutions crafted" },
     { label: "CERTIFICATES", value: 12, suffix: "+", desc: "Professional skills validated" },
     { label: "YEARS OF EXPERIENCE", value: 1, suffix: "+", desc: "Active in Tech & IT" },
   ],
@@ -138,6 +138,23 @@ export const PORTFOLIO_DATA = {
       description: "High-performance task management website with offline synchronization features and intuitive drag-and-drop interface for maximum productivity.",
       tags: ["HTML5", "CSS3", "JavaScript"],
       features: ["Drag & Drop Sorting", "Task Priority Levels", "DueDate Reminders", "Offline Persistence", "Quick Search Filters", "Dark/Light Modes"]
+    },
+    { 
+      title: "Hishab Calculator", 
+      category: "Web Application (Utility)", 
+      image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?q=80&w=1000&auto=format&fit=crop", 
+      link: "https://github.com/Rashidulhaq/Hishab-Calculator",
+      liveLink: "https://hishab-calculator.vercel.app/",
+      description: "A fast, responsive, and precision-engineered web calculator designed for instant arithmetic operations, keyboard shortcut navigation, memory recall, and smooth tactile glassmorphic interactions.",
+      tags: ["JavaScript", "HTML5", "CSS3", "Responsive UI"],
+      features: [
+        "Instant Arithmetic Operations (+, -, ×, ÷, %, √)",
+        "Full Keyboard Input & Quick Shortcut Navigation",
+        "Calculation History Tracking & Memory Recall",
+        "Zero-Latency Real-Time Calculation Engine",
+        "Responsive Mobile-Friendly Touch Keypad",
+        "Clean Glassmorphic Dark Theme Styling"
+      ]
     },
     { 
       title: "Emotion Based Music Recommendation", 

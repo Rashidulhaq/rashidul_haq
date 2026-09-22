@@ -165,8 +165,8 @@ export default function Certificates() {
           
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -203,21 +203,18 @@ export default function Certificates() {
             <motion.div
               key={stat.title}
               variants={{
-                hidden: { opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" },
+                hidden: { opacity: 0, y: 30, scale: 0.95 },
                 visible: { 
                   opacity: 1, 
                   y: 0, 
                   scale: 1, 
-                  filter: "blur(0px)",
                   transition: { type: "spring", stiffness: 140, damping: 14, delay: i * 0.08 }
                 }
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.03,
-                rotateX: 4,
-                rotateY: 4,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                y: -5, 
+                scale: 1.015,
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
               className="relative p-5 rounded-2xl bg-[#090e1c]/80 border border-white/10 hover:border-amber-400/40 backdrop-blur-xl flex items-center gap-4 group transition-all duration-500 overflow-hidden shadow-xl"
             >
@@ -436,8 +433,8 @@ export default function Certificates() {
                 <motion.div
                   key={cert.title}
                   layout
-                  initial={{ opacity: 0, y: 40, scale: 0.85, filter: "blur(10px)" }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9, y: 20 }}
                   viewport={{ once: false, margin: "-50px" }}
                   transition={{ 
@@ -448,11 +445,9 @@ export default function Certificates() {
                     layout: { duration: 0.35, ease: "easeOut" }
                   }}
                   whileHover={{ 
-                    y: -12, 
-                    scale: 1.02,
-                    rotateX: 3,
-                    rotateY: 3,
-                    transition: { type: "spring", stiffness: 350, damping: 18 } 
+                    y: -7, 
+                    scale: 1.015,
+                    transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } 
                   }}
                   className="glossy-card rounded-[1.4rem] overflow-hidden group border border-white/10 hover:border-amber-400/40 hover:shadow-[0_20px_45px_rgba(0,0,0,0.85),0_0_30px_rgba(245,158,11,0.2)] transition-all duration-500 shadow-2xl bg-[#0a0e1a]/85 backdrop-blur-xl flex flex-col relative"
                 >
@@ -480,14 +475,14 @@ export default function Certificates() {
                       <span className="text-[9px] font-bold text-emerald-300 uppercase tracking-wide">Verified</span>
                     </div>
 
-                    {/* Hover Inspect Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity bg-dark/50 backdrop-blur-xs">
+                    {/* Hover Inspect Icon - Crystal Clear & Eye-Catching */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300 bg-gradient-to-t from-black/75 via-black/25 to-black/35 pointer-events-none">
                       <motion.span 
                         whileHover={{ scale: 1.08 }}
                         whileTap={{ scale: 0.95 }}
-                        className="px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-200 text-xs font-semibold flex items-center gap-1.5 shadow-2xl backdrop-blur-md"
+                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-[0_0_25px_rgba(245,158,11,0.65)] transform scale-90 group-hover/img:scale-100 transition-all duration-300 pointer-events-auto"
                       >
-                        <Maximize2 size={13} /> View Full
+                        <Maximize2 size={13} strokeWidth={2.5} /> View Full
                       </motion.span>
                     </div>
                   </div>
@@ -542,8 +537,8 @@ export default function Certificates() {
 
         {/* Additional Competitions and Volunteering Accolades with Spring Entry */}
         <motion.div
-          initial={{ opacity: 0, y: 35, scale: 0.95, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 25, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ type: "spring", stiffness: 140, damping: 16 }}
           className="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-purple-950/40 via-[#0a0f1d] to-indigo-950/40 border border-white/10 hover:border-amber-400/30 backdrop-blur-xl shadow-2xl relative overflow-hidden group"
@@ -553,7 +548,8 @@ export default function Certificates() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
             <div className="flex items-center gap-4">
               <motion.div 
-                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                whileHover={{ scale: 1.06, y: -1 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
                 className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400/20 to-purple-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.2)]"
               >
                 <Trophy size={24} />

@@ -208,10 +208,10 @@ export default function App() {
                   onShowBlog={() => toggleView("blog")} 
                 />
                 <motion.div
-                  initial={{ opacity: 0, y: 30, scale: 0.98, filter: "blur(20px)" }}
-                  animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ 
-                    duration: 1.5, 
+                    duration: 0.8, 
                     ease: [0.16, 1, 0.3, 1]
                   }}
                 >

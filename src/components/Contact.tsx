@@ -180,8 +180,8 @@ export default function Contact() {
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -217,21 +217,18 @@ export default function Contact() {
           {/* Email Quick Card */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 35, scale: 0.9, filter: "blur(8px)" },
+              hidden: { opacity: 0, y: 25, scale: 0.95 },
               visible: { 
                 opacity: 1, 
                 y: 0, 
                 scale: 1, 
-                filter: "blur(0px)",
                 transition: { type: "spring", stiffness: 140, damping: 14 } 
               }
             }}
             whileHover={{ 
-              y: -8, 
-              scale: 1.025,
-              rotateX: 4,
-              rotateY: 4,
-              transition: { type: "spring", stiffness: 350, damping: 16 }
+              y: -5, 
+              scale: 1.015,
+              transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
             }}
             className="relative group p-4.5 rounded-2xl bg-[#090e1c]/80 border border-white/10 backdrop-blur-xl hover:border-cyan-400/50 transition-all duration-300 shadow-lg overflow-hidden"
           >
@@ -268,21 +265,18 @@ export default function Contact() {
           {/* WhatsApp / Phone Quick Card */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 35, scale: 0.9, filter: "blur(8px)" },
+              hidden: { opacity: 0, y: 25, scale: 0.95 },
               visible: { 
                 opacity: 1, 
                 y: 0, 
                 scale: 1, 
-                filter: "blur(0px)",
                 transition: { type: "spring", stiffness: 140, damping: 14, delay: 0.08 } 
               }
             }}
             whileHover={{ 
-              y: -8, 
-              scale: 1.025,
-              rotateX: 4,
-              rotateY: 4,
-              transition: { type: "spring", stiffness: 350, damping: 16 }
+              y: -5, 
+              scale: 1.015,
+              transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
             }}
             className="relative group p-4.5 rounded-2xl bg-[#090e1c]/80 border border-white/10 backdrop-blur-xl hover:border-emerald-500/50 transition-all duration-300 shadow-lg overflow-hidden"
           >
@@ -320,21 +314,18 @@ export default function Contact() {
           {/* Location & Status Quick Card */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 35, scale: 0.9, filter: "blur(8px)" },
+              hidden: { opacity: 0, y: 25, scale: 0.95 },
               visible: { 
                 opacity: 1, 
                 y: 0, 
                 scale: 1, 
-                filter: "blur(0px)",
                 transition: { type: "spring", stiffness: 140, damping: 14, delay: 0.16 } 
               }
             }}
             whileHover={{ 
-              y: -8, 
-              scale: 1.025,
-              rotateX: 4,
-              rotateY: 4,
-              transition: { type: "spring", stiffness: 350, damping: 16 }
+              y: -5, 
+              scale: 1.015,
+              transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
             }}
             className="relative group p-4.5 rounded-2xl bg-[#090e1c]/80 border border-white/10 backdrop-blur-xl hover:border-purple-500/50 transition-all duration-300 shadow-lg overflow-hidden"
           >
@@ -367,8 +358,8 @@ export default function Contact() {
           
           {/* Left Column: Direct Message Form & Socials */}
           <motion.div 
-            initial={{ opacity: 0, x: -40, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 130, damping: 15 }}
             className="lg:col-span-6 space-y-6"
@@ -480,8 +471,8 @@ export default function Contact() {
 
           {/* Right Column: Visitor Guestbook & Comments */}
           <motion.div 
-            initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-50px" }}
             transition={{ type: "spring", stiffness: 130, damping: 15 }}
             className="lg:col-span-6"

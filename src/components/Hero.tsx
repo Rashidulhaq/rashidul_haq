@@ -165,8 +165,8 @@ export default function Hero() {
                 transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ 
                   scale: 1.02, 
-                  y: -4,
-                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                  y: -2,
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative px-8 md:px-11 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#4f46e5]/20 hover:border-[#4f46e5]/50 transition-colors group overflow-hidden w-full sm:w-auto"
@@ -189,8 +189,8 @@ export default function Hero() {
                 transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ 
                   scale: 1.02, 
-                  y: -4,
-                  transition: { type: "spring", stiffness: 400, damping: 10 }
+                  y: -2,
+                  transition: { duration: 0.2, ease: "easeOut" }
                 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative px-8 md:px-11 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#ec4899]/20 hover:border-[#ec4899]/50 transition-colors group overflow-hidden w-full sm:w-auto"
@@ -255,8 +255,9 @@ export default function Hero() {
                       href={social.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                      whileTap={{ scale: 0.9 }}
+                      whileHover={{ scale: 1.08, y: -2 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      whileTap={{ scale: 0.95 }}
                       className={`w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl ${style.bg} backdrop-blur-xl flex items-center justify-center border border-white/5 group-hover:border-white/20 relative z-10 shadow-2xl transition-all duration-500 ${style.shadow}`}
                     >
                       <Icon size={20} className={`${style.text} transition-all duration-300 group-hover:scale-110`} />
@@ -271,9 +272,9 @@ export default function Hero() {
         {/* Right Side Illustration */}
         <div className="w-full lg:w-2/5 relative">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, filter: "blur(20px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
             {/* Background Glows */}

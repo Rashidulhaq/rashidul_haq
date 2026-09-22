@@ -76,8 +76,8 @@ export default function Experience({ onShowResume }: { onShowResume?: () => void
 
           <motion.div
             variants={{
-              hidden: { opacity: 0, y: 15, filter: "blur(6px)" },
-              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } }
+              hidden: { opacity: 0, y: 15 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
             }}
             className="relative inline-block"
           >
@@ -151,8 +151,8 @@ export default function Experience({ onShowResume }: { onShowResume?: () => void
               }}
               whileHover={{ 
                 y: -4, 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 350, damping: 16 }
+                scale: 1.015,
+                transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
               }}
               className="p-3 sm:p-3.5 rounded-xl bg-[#090e1c]/80 border border-white/[0.08] hover:border-cyan-400/35 backdrop-blur-xl flex items-center gap-3 shadow-md relative overflow-hidden group transition-all duration-300"
             >
@@ -194,7 +194,7 @@ export default function Experience({ onShowResume }: { onShowResume?: () => void
               }}
               whileHover={{ 
                 y: -4, 
-                transition: { type: "spring", stiffness: 350, damping: 18 } 
+                transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } 
               }}
               className="relative p-5 sm:p-6 md:p-7 rounded-2xl bg-gradient-to-br from-[#0c1224]/90 via-[#080d1a]/95 to-[#070b14]/90 border border-cyan-500/25 hover:border-cyan-400/50 shadow-[0_15px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(6,182,212,0.12)] backdrop-blur-2xl transition-all duration-300 group overflow-hidden"
             >
