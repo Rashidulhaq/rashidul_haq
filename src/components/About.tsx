@@ -1,5 +1,5 @@
 import { motion, useInView, animate, type Variants } from "motion/react";
-import { Download, Code2, Award, Globe, Sparkles, Quote, MousePointer2, ExternalLink } from "lucide-react";
+import { Download, Code2, Award, Globe, Sparkles, Quote, MousePointer2, ExternalLink, ArrowUpRight, CheckCircle2, Briefcase, Zap } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { PORTFOLIO_DATA } from "../constants";
 
@@ -28,47 +28,73 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
   onShowResume?: () => void, 
   onSetPortfolioTab?: (tab: string) => void 
 }) {
-  const ICON_LIST = [Code2, Award, Globe];
-  const COLOR_LIST = [
-    "from-[#4f46e5] to-[#a855f7]",
-    "from-[#a855f7] to-[#ec4899]",
-    "from-[#ec4899] to-[#4f46e5]"
-  ];
-
   const stats = [
     {
+      id: "projects",
       label: "TOTAL PROJECTS",
-      value: PORTFOLIO_DATA.projects.length,
+      badge: "LIVE & FEATURED",
+      value: PORTFOLIO_DATA.projects?.length || 10,
       suffix: "+",
-      desc: "Innovative web solutions crafted",
+      desc: "Innovative full-stack web applications, interactive platforms & IoT systems crafted with precision.",
+      highlight: "Web Apps • Full-Stack • IoT",
+      actionText: "Explore Projects",
       icon: Code2,
-      color: COLOR_LIST[0],
+      gradient: "from-cyan-400 via-sky-400 to-indigo-500",
+      textGradient: "from-white via-cyan-100 to-cyan-400",
+      bgGradient: "from-cyan-500/15 via-blue-600/10 to-transparent",
+      glowColor: "rgba(6, 182, 212, 0.4)",
+      borderColor: "border-cyan-500/25 group-hover:border-cyan-400/80",
+      pillBg: "bg-cyan-500/10 text-cyan-300 border-cyan-400/30",
+      iconBoxBg: "bg-cyan-500/10 border-cyan-400/30 text-cyan-400 group-hover:bg-cyan-500/20",
+      hoverShadow: "group-hover:shadow-[0_20px_40px_-15px_rgba(6,182,212,0.4)]",
       onClick: () => {
         onSetPortfolioTab?.("Projects");
-        const el = document.getElementById("projects");
+        const el = document.getElementById("portfolio") || document.getElementById("projects");
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
+      id: "certificates",
       label: "CERTIFICATES",
-      value: 12,
+      badge: "VERIFIED CREDENTIALS",
+      value: PORTFOLIO_DATA.certificates?.length || 12,
       suffix: "+",
-      desc: "Professional skills validated",
+      desc: "Industry-recognized certificates validating algorithmic problem solving, Python & web technologies.",
+      highlight: "HackerRank • Coursera • CS Core",
+      actionText: "View Certificates",
       icon: Award,
-      color: COLOR_LIST[1],
+      gradient: "from-purple-400 via-fuchsia-400 to-pink-500",
+      textGradient: "from-white via-purple-100 to-fuchsia-400",
+      bgGradient: "from-purple-500/15 via-fuchsia-600/10 to-transparent",
+      glowColor: "rgba(217, 70, 239, 0.4)",
+      borderColor: "border-purple-500/25 group-hover:border-fuchsia-400/80",
+      pillBg: "bg-fuchsia-500/10 text-pink-300 border-fuchsia-400/30",
+      iconBoxBg: "bg-fuchsia-500/10 border-fuchsia-400/30 text-fuchsia-400 group-hover:bg-fuchsia-500/20",
+      hoverShadow: "group-hover:shadow-[0_20px_40px_-15px_rgba(217,70,239,0.4)]",
       onClick: () => {
         onSetPortfolioTab?.("Certificates");
-        const el = document.getElementById("certificates");
+        const el = document.getElementById("portfolio") || document.getElementById("certificates");
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }
     },
     {
+      id: "experience",
       label: "YEARS OF EXPERIENCE",
+      badge: "ACTIVE ROLE",
       value: 1,
-      suffix: "+",
-      desc: "Tahmid IT Park • Active Role",
-      icon: Globe,
-      color: COLOR_LIST[2],
+      suffix: "+ Year",
+      desc: "Software Engineer at Tahmid IT Park, building scalable frontends & responsive user interfaces.",
+      highlight: "Tahmid IT Park • Active Role",
+      actionText: "View Experience",
+      icon: Briefcase,
+      gradient: "from-emerald-400 via-teal-400 to-cyan-500",
+      textGradient: "from-white via-emerald-100 to-teal-400",
+      bgGradient: "from-emerald-500/15 via-teal-600/10 to-transparent",
+      glowColor: "rgba(16, 185, 129, 0.4)",
+      borderColor: "border-emerald-500/25 group-hover:border-emerald-400/80",
+      pillBg: "bg-emerald-500/10 text-emerald-300 border-emerald-400/30",
+      iconBoxBg: "bg-emerald-500/10 border-emerald-400/30 text-emerald-400 group-hover:bg-emerald-500/20",
+      hoverShadow: "group-hover:shadow-[0_20px_40px_-15px_rgba(16,185,129,0.4)]",
       onClick: () => {
         const el = document.getElementById("experience");
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -362,62 +388,113 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
           whileInView="visible"
           viewport={{ margin: "-50px" }}
           variants={{
-            visible: { transition: { staggerChildren: 0.2 } }
+            visible: { transition: { staggerChildren: 0.15 } }
           }}
           style={{ perspective: 1000 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8"
         >
-          {stats.map((stat, i) => (
+          {stats.map((stat) => (
             <motion.div 
-              key={i}
+              key={stat.id}
               variants={itemVariants}
               whileHover={{ 
-                y: -6,
-                scale: 1.02,
+                y: -8,
+                scale: 1.025,
                 transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
               }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => {
                 stat.onClick?.();
               }}
-              className="relative p-10 rounded-[2.5rem] group transition-all duration-500 overflow-hidden cursor-pointer"
+              className={`group relative rounded-[2rem] p-7 sm:p-8 overflow-hidden cursor-pointer transition-all duration-500 backdrop-blur-2xl bg-gradient-to-b from-[#0d1527]/95 via-[#090e1c]/95 to-[#050813]/95 border ${stat.borderColor} ${stat.hoverShadow}`}
             >
-              <div className="absolute inset-0 bg-dark/40 backdrop-blur-2xl border border-white/5 group-hover:border-white/20 transition-colors duration-500" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className={`absolute inset-[1px] bg-gradient-to-br ${stat.color} opacity-[0.03] group-hover:opacity-[0.1] transition-opacity duration-500 rounded-[2.5rem]`} />
-              <div className={`absolute -bottom-24 -right-24 w-48 h-48 bg-gradient-to-br ${stat.color} blur-[80px] opacity-0 group-hover:opacity-40 transition-opacity duration-700`} />
+              {/* Dynamic Inner Gradient Accent */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-60 group-hover:opacity-100 transition-opacity duration-500`} />
               
-              <div className="reflection-line" />
-              
-              <div className="flex justify-between items-start mb-8 relative z-10">
-                <motion.div 
-                  variants={internalVariants}
-                  className={`w-16 h-16 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center group-hover:scale-110 transition-all duration-500 shadow-inner overflow-hidden relative`}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-20 transition-opacity`} />
-                  <stat.icon size={30} className="text-white/40 group-hover:text-white transition-colors relative z-10" />
-                </motion.div>
-                <motion.div variants={internalVariants} className="text-right">
-                  <div className="text-4xl md:text-5xl font-display font-bold text-white tracking-tighter leading-none mb-1">
+              {/* Micro Subtle Grid Texture */}
+              <div 
+                className="absolute inset-0 opacity-[0.035] group-hover:opacity-[0.07] transition-opacity duration-500 pointer-events-none"
+                style={{
+                  backgroundImage: `radial-gradient(circle, #ffffff 1px, transparent 1px)`,
+                  backgroundSize: '16px 16px'
+                }}
+              />
+
+              {/* Pulsing Colored Glow in Corner */}
+              <div 
+                className="absolute -bottom-16 -right-16 w-52 h-52 rounded-full blur-[70px] opacity-25 group-hover:opacity-75 transition-opacity duration-700 pointer-events-none"
+                style={{ background: stat.glowColor }}
+              />
+
+              {/* Diagonal Light Beam / Reflection Line */}
+              <div className="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full duration-1000 ease-in-out" />
+
+              {/* Top Header Row: Icon + Badge + Action Arrow */}
+              <div className="relative z-10 flex items-center justify-between gap-3 mb-6">
+                <div className="flex items-center gap-3">
+                  {/* Glowing Icon Box */}
+                  <motion.div 
+                    variants={internalVariants}
+                    className={`w-14 h-14 rounded-2xl ${stat.iconBoxBg} border flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 relative overflow-hidden`}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-20 group-hover:opacity-40 transition-opacity`} />
+                    <stat.icon className="w-7 h-7 relative z-10" />
+                  </motion.div>
+
+                  {/* Status Pill Badge */}
+                  <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase border backdrop-blur-md ${stat.pillBg}`}>
+                    {stat.id === "experience" ? (
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                      </span>
+                    ) : (
+                      <Sparkles size={11} className="animate-pulse" />
+                    )}
+                    <span>{stat.badge}</span>
+                  </span>
+                </div>
+
+                {/* Micro Action Button */}
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 text-white/60 group-hover:text-white group-hover:bg-white/15 group-hover:border-white/30 flex items-center justify-center transition-all duration-300 shadow-sm shrink-0">
+                  <ArrowUpRight size={18} className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </div>
+
+              {/* Center Stat Counter */}
+              <div className="relative z-10 mb-3">
+                <motion.div variants={internalVariants} className="flex items-baseline gap-2">
+                  <div className={`text-5xl sm:text-6xl font-display font-black tracking-tight bg-gradient-to-r ${stat.textGradient} bg-clip-text text-transparent`}>
                     <Counter value={stat.value} suffix={stat.suffix} />
                   </div>
                 </motion.div>
-              </div>
 
-              <div className="relative z-10">
-                <motion.h4 variants={internalVariants} className="text-xs font-bold text-white/40 tracking-[0.4em] uppercase mb-4 group-hover:text-white/60 transition-colors">
+                <motion.h4 variants={internalVariants} className="text-xs sm:text-sm font-bold tracking-[0.22em] text-white/90 uppercase font-display mt-1">
                   {stat.label}
                 </motion.h4>
-                <motion.div 
-                  variants={internalVariants}
-                  className={`h-[1px] w-12 bg-gradient-to-r ${stat.color} mb-4 group-hover:w-full transition-all duration-700 opacity-50`} 
-                />
-                <motion.p variants={internalVariants} className="text-white/30 text-sm font-medium leading-relaxed italic">
-                  {stat.desc}
-                </motion.p>
               </div>
 
-              <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-2 group-hover:translate-x-0 z-10">
-                <Sparkles size={16} className="text-white/20" />
+              {/* Glowing Dynamic Accent Line */}
+              <div className="relative z-10 w-full h-1 bg-white/10 rounded-full overflow-hidden mb-4">
+                <div className={`h-full bg-gradient-to-r ${stat.gradient} rounded-full w-2/5 group-hover:w-full transition-all duration-700 ease-out`} />
+              </div>
+
+              {/* Description & Interactive Cue */}
+              <div className="relative z-10 space-y-3">
+                <motion.p variants={internalVariants} className="text-slate-300 text-xs sm:text-[13px] leading-relaxed line-clamp-2">
+                  {stat.desc}
+                </motion.p>
+
+                {/* Footer Pill & Action prompt */}
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                  <span className="text-slate-400 font-medium flex items-center gap-1.5 truncate pr-2">
+                    <CheckCircle2 size={13} className="text-white/60 group-hover:text-white transition-colors shrink-0" />
+                    <span className="truncate">{stat.highlight}</span>
+                  </span>
+                  <span className={`font-semibold tracking-wide flex items-center gap-1 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent shrink-0`}>
+                    {stat.actionText} →
+                  </span>
+                </div>
               </div>
             </motion.div>
           ))}
