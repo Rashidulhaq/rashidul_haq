@@ -328,7 +328,10 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                   <div className="w-full h-full rounded-full overflow-hidden border-4 border-dark z-10 relative">
                     <motion.img 
                       src={PORTFOLIO_DATA.profile.image} 
-                      alt="Profile" 
+                      alt="Md. Rashidul Haq" 
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "/images/pic1.jpg";
+                      }}
                       whileHover={{ 
                         scale: 1.05,
                         rotate: 2,

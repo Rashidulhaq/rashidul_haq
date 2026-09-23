@@ -2,7 +2,7 @@ export const PORTFOLIO_DATA = {
   profile: {
     name: "MD. RASHIDUL HAQ",
     role: "B.Sc in Computer Science and Engineering",
-    image: "/images/pic1.jpg",
+    image: "/images/aboutme.png",
     resumeImage: "/CV/profilecv.jpg",
     github: "https://github.com/Rashidulhaq",
     linkedin: "https://www.linkedin.com/in/rashidulhaq/",
