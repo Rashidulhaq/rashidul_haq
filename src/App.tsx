@@ -44,6 +44,19 @@ export default function App() {
     return () => window.removeEventListener("scroll", checkScroll);
   }, []);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = "👋 Come back! | Rashidul Haq Portfolio";
+      } else {
+        document.title = "Rashidul Haq Portfolio";
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
