@@ -223,7 +223,7 @@ export default function Projects({
               }}
               className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
             >
-              Flagship production web application highlighting modern architecture, responsive performance, and dual-engine AI.
+              Flagship production web application highlighting modern educational ERP architecture, role-based access control, and scalable performance.
             </motion.p>
           </motion.div>
 
@@ -282,7 +282,7 @@ export default function Projects({
 
                     <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#0d1829] border border-cyan-500/35 text-[10px] font-mono font-medium text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
                       <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(6,182,212,1)]" />
-                      <span>https://khorchaai.vercel.app</span>
+                      <span>https://priyoful-school-management-system.vercel.app</span>
                     </div>
 
                     <div className="flex items-center gap-1">
@@ -294,30 +294,30 @@ export default function Projects({
                   {/* Browser Content */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-[#02040a]">
                     <img 
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" 
-                      alt="Khorcha AI Preview"
+                      src="/images/projects/priyoful.jpg" 
+                      alt="Priyoful School Management System Preview"
                       className="w-full h-full object-cover group-hover/frame:scale-105 transition-transform duration-700 ease-out"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent opacity-70" />
                     
-                    {/* Floating Floating AI Telemetry Glass Badge */}
+                    {/* Floating Telemetry Glass Badge */}
                     <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#070b16]/90 border border-cyan-400/30 backdrop-blur-md flex items-center justify-between shadow-[0_8px_25px_rgba(0,0,0,0.6),0_0_15px_rgba(6,182,212,0.15)]">
                       <div className="flex items-center gap-2.5">
                         <div className="relative w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500/20 via-indigo-500/30 to-purple-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-[11px] font-mono font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]">
-                          <span className="animate-pulse">AI</span>
+                          <span className="animate-pulse">ERP</span>
                         </div>
                         <div>
                           <p className="text-xs font-bold text-white leading-none flex items-center gap-1.5">
-                            Dual-Engine AI Expense Engine
+                            Priyoful School ERP & Management
                             <Sparkles size={11} className="text-amber-400 animate-spin" style={{ animationDuration: '4s' }} />
                           </p>
-                          <p className="text-[10px] text-cyan-200/80 mt-1 font-mono">Gemini 3.8 Flash + Bangla/Banglish NLP</p>
+                          <p className="text-[10px] text-cyan-200/80 mt-1 font-mono">Full-Stack Educational Operating System</p>
                         </div>
                       </div>
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[10px] font-semibold tracking-wider">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                        <span>PWA OFFLINE</span>
+                        <span>LIVE ON VERCEL</span>
                       </span>
                     </div>
                   </div>
@@ -328,20 +328,20 @@ export default function Projects({
               <div className="lg:col-span-5 flex flex-col justify-center space-y-4">
                 <div className="flex flex-wrap items-center gap-2.5">
                   <span className="px-3 py-1 rounded-full bg-[#0a1e30] border border-cyan-400/40 text-cyan-300 text-[11px] font-mono font-semibold tracking-wide shadow-[0_0_15px_rgba(6,182,212,0.18)]">
-                    React 19 + TypeScript
+                    React + TypeScript + Full Stack
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(245,158,11,0.15)]">
                     <Star size={12} className="fill-amber-400 text-amber-400 animate-pulse" />
-                    <span>Featured Flagship</span>
+                    <span>Featured Masterpiece</span>
                   </span>
                 </div>
 
                 <div>
                   <h4 className="text-xl sm:text-2xl lg:text-[1.7rem] font-display font-bold text-white leading-snug tracking-tight group-hover/spotlight:text-cyan-100 transition-colors">
-                    Khorcha AI – Intelligent Expense Tracker & Financial Health
+                    Priyoful School Management System – Modern Educational ERP Platform
                   </h4>
                   <p className="text-slate-400 text-xs sm:text-[13px] leading-relaxed mt-2.5">
-                    Privacy-first personal money management built for Bangladeshi users with natural language Bengali/Banglish NLP expense parsing, Gemini 3.8 Flash dual-engine AI, and real-time 50/30/20 health telemetry.
+                    An all-in-one educational ERP and school management solution crafted for &apos;Priyoful&apos; non-profit organization to streamline student &amp; teacher administration, real-time attendance, exam grading, routine schedules, and fee ledgers into a modern, unified portal.
                   </p>
                 </div>
 
@@ -349,16 +349,16 @@ export default function Projects({
                 <div className="space-y-2.5 pt-1">
                   {[
                     {
-                      label: "Bangla & Banglish NLP:",
-                      desc: "Real-time heuristic and natural language expense parsing."
+                      label: "Student & Teacher Management:",
+                      desc: "Complete admissions lifecycle, profile directories & role permissions."
                     },
                     {
-                      label: "Dual-Engine AI:",
-                      desc: "Google Gemini 3.8 Flash fallback with offline-first heuristic parsing."
+                      label: "Academic & Exam Operations:",
+                      desc: "Automated gradebook calculations, report card generation & routine planner."
                     },
                     {
-                      label: "50/30/20 Telemetry:",
-                      desc: "Financial health rule tracking & instant client-side PDF export."
+                      label: "Accounts & Fee Ledger:",
+                      desc: "Tuition collection records, fee invoices & financial transparency."
                     }
                   ].map((item, idx) => (
                     <motion.div 
@@ -382,7 +382,7 @@ export default function Projects({
                     TECHNOLOGIES USED
                   </p>
                   <div className="flex flex-wrap gap-1.5">
-                    {["React 19", "TypeScript", "Bangla NLP", "Google Gemini", "Tailwind CSS", "Express"].map((tech) => (
+                    {["React", "TypeScript", "Tailwind CSS", "Node.js", "Full Stack", "Vercel"].map((tech) => (
                       <span 
                         key={tech}
                         className="px-2.5 py-1 rounded-md bg-[#0b1424] hover:bg-[#101c34] border border-cyan-500/20 hover:border-cyan-400/50 text-slate-300 hover:text-cyan-200 text-[11px] font-mono transition-all"
@@ -396,7 +396,7 @@ export default function Projects({
                 {/* Action Buttons with High-Tech Shimmer and Glowing Interactions */}
                 <div className="flex flex-wrap items-center gap-2.5 pt-2">
                   <motion.a
-                    href="https://khorchaai.vercel.app/"
+                    href="https://priyoful-school-management-system.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -409,7 +409,7 @@ export default function Projects({
                   </motion.a>
 
                   <motion.a
-                    href="https://github.com/Rashidulhaq/khorcha.ai"
+                    href="https://github.com/Rashidulhaq/Priyoful-School-Management-System"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.04, y: -2 }}

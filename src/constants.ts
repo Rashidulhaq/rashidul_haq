@@ -17,7 +17,7 @@ export const PORTFOLIO_DATA = {
   title_skills: ["Software Engineer", "Frontend Developer", "BSc. Engineer", "Tech Enthusiast"],
   bio: "Passionate Software Engineer with a focus on building scalable web applications and AI-driven solutions. Experienced in full-stack development and quality assurance.",
   stats: [
-    { label: "TOTAL PROJECTS", value: 23, suffix: "+", desc: "Innovative web solutions crafted" },
+    { label: "TOTAL PROJECTS", value: 24, suffix: "+", desc: "Innovative web solutions crafted" },
     { label: "CERTIFICATES", value: 12, suffix: "+", desc: "Professional skills validated" },
     { label: "YEARS OF EXPERIENCE", value: 1, suffix: "+", desc: "Active in Tech & IT" },
   ],
@@ -81,6 +81,24 @@ export const PORTFOLIO_DATA = {
     { category: "Databases & AI", items: ["MySQL", "Artificial Intelligence", "GitHub"] }
   ],
   projects: [
+    { 
+      title: "Priyoful School Management System", 
+      category: "Education & Management ERP", 
+      image: "/images/projects/priyoful.jpg", 
+      link: "https://github.com/Rashidulhaq/Priyoful-School-Management-System",
+      liveLink: "https://priyoful-school-management-system.vercel.app/",
+      description: "An all-in-one modern educational ERP and school management system built for 'Priyoful' non-profit organization. Features comprehensive student & teacher directories, daily attendance tracking, automated examination grade calculation, class scheduling routines, tuition fee ledger, and role-based administrative control.",
+      tags: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Full Stack", "ERP"],
+      features: [
+        "Comprehensive Student & Teacher Directory & Profiles",
+        "Daily Class Attendance & Real-time Academic Tracking",
+        "Automated Examination & Gradebook Report Card Engine",
+        "Dynamic Class Routine Scheduler & Notice Announcements",
+        "Tuition Fees, Payment Invoicing & Financial Accounting Ledger",
+        "Role-Based Access Control (Admin, Teacher, Staff, Student)",
+        "Fast & Fully Responsive Modern Dashboard UI on Vercel"
+      ]
+    },
     { 
       title: "Ecommerce Website Start Your Business", 
       category: "E-Commerce platform", 
