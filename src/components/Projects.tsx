@@ -171,123 +171,98 @@ export default function Projects({
 
       <div className="layout-container relative z-10">
         {/* ========================================================= */}
-        {/* SPOTLIGHT SHOWCASE: FEATURED MASTERPIECE (FLAGSHIP CARD)  */}
-        {/* ========================================================= */}
+        {/* SPOTLIGHT SHOWCASE: FEATURED MASTERPIECE (COMPACT PROFESSIONAL LOOK) */}
+        {/* ====================================================================== */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="w-full max-w-7xl mx-auto mb-20 px-2 sm:px-4"
+          viewport={{ once: false, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="w-full max-w-5xl mx-auto mb-14 px-2 sm:px-4"
         >
-          {/* Section Header: Featured Masterpiece with Staggered Blur-to-Focus Animation */}
+          {/* Section Header: Featured Masterpiece */}
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, margin: "-80px" }}
+            viewport={{ once: false, margin: "-60px" }}
             variants={{
               hidden: {},
-              visible: { transition: { staggerChildren: 0.15 } }
+              visible: { transition: { staggerChildren: 0.12 } }
             }}
-            className="text-center mb-14"
+            className="text-center mb-8 sm:mb-10"
           >
             <motion.div 
               variants={{
                 hidden: { opacity: 0, scale: 0.9 },
-                visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
+                visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
               }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[11px] font-semibold tracking-wider uppercase mb-3.5 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.12)]"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[10.5px] font-semibold tracking-wider uppercase mb-2.5 backdrop-blur-md"
             >
-              <Sparkles size={13} className="text-cyan-400" />
+              <Sparkles size={11} className="text-cyan-400" />
               <span>Spotlight Showcase • Flagship App</span>
             </motion.div>
             
             <motion.div 
               variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+                hidden: { opacity: 0, y: 15 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
               }}
               className="relative inline-block"
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold text-white tracking-tight">
                 Featured <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Masterpiece</span>
               </h2>
-              <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
-              <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
+              <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-2.5 opacity-80" />
             </motion.div>
 
             <motion.p 
               variants={{
-                hidden: { opacity: 0, y: 15 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
               }}
-              className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
+              className="text-slate-400 text-xs sm:text-[13px] font-normal max-w-xl mx-auto mt-2 leading-relaxed"
             >
               Flagship production web application highlighting modern educational ERP architecture, role-based access control, and scalable performance.
             </motion.p>
           </motion.div>
 
-          {/* Masterpiece Showcase Container */}
+          {/* Masterpiece Showcase Container - Compact & Sleek */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative rounded-2xl sm:rounded-[2.2rem] p-4 sm:p-7 lg:p-9 bg-gradient-to-b from-[#091122]/95 via-[#060a16]/98 to-[#03060f] border border-cyan-500/30 hover:border-cyan-400/60 shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_40px_rgba(6,182,212,0.15)] hover:shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_60px_rgba(6,182,212,0.3)] backdrop-blur-2xl overflow-hidden transition-all duration-700 group/spotlight"
+            viewport={{ once: false, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative rounded-2xl p-4 sm:p-5 lg:p-6 bg-gradient-to-b from-[#091122]/95 via-[#060a16]/98 to-[#03060f] border border-cyan-500/25 hover:border-cyan-400/50 shadow-[0_15px_45px_rgba(0,0,0,0.7),0_0_25px_rgba(6,182,212,0.12)] hover:shadow-[0_20px_55px_rgba(0,0,0,0.8),0_0_35px_rgba(6,182,212,0.2)] backdrop-blur-xl overflow-hidden transition-all duration-500 group/spotlight"
           >
-            {/* Ambient Animated Glowing Nebulas */}
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.25, 1],
-                opacity: [0.15, 0.3, 0.15],
-                x: [0, 20, 0],
-                y: [0, -15, 0]
-              }}
-              transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
-              className="absolute -top-24 -right-24 w-96 h-96 bg-gradient-to-br from-cyan-500/25 via-indigo-600/20 to-purple-600/10 blur-[110px] rounded-full pointer-events-none" 
-            />
-            <motion.div 
-              animate={{ 
-                scale: [1.2, 1, 1.2],
-                opacity: [0.12, 0.25, 0.12],
-                x: [0, -25, 0],
-                y: [0, 20, 0]
-              }}
-              transition={{ repeat: Infinity, duration: 9, ease: "easeInOut", delay: 1 }}
-              className="absolute -bottom-24 -left-20 w-96 h-96 bg-gradient-to-tr from-cyan-400/20 via-sky-500/15 to-amber-500/10 blur-[110px] rounded-full pointer-events-none" 
-            />
+            {/* Soft Ambient Glows */}
+            <div className="absolute -top-16 -right-16 w-64 h-64 bg-cyan-500/15 blur-[80px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-indigo-500/10 blur-[80px] rounded-full pointer-events-none" />
 
-            {/* Top Border Animated Shimmer Line */}
-            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/70 to-transparent group-hover/spotlight:via-cyan-300 transition-all duration-700" />
+            {/* Top Border Shimmer */}
+            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent group-hover/spotlight:via-cyan-300 transition-all duration-500" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-10 items-center relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center relative z-10">
               
-              {/* Left Column: Floating Animated Browser Mockup Frame */}
-              <div className="lg:col-span-7">
+              {/* Left Column: Browser Mockup Frame */}
+              <div className="lg:col-span-6">
                 <motion.div 
-                  animate={{ y: [0, -7, 0] }}
-                  transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                  className="rounded-xl sm:rounded-2xl bg-[#040711] border border-cyan-400/30 group-hover/spotlight:border-cyan-300/60 shadow-[0_15px_40px_rgba(0,0,0,0.8),0_0_25px_rgba(6,182,212,0.18)] overflow-hidden group/frame relative transition-all duration-500"
+                  className="rounded-xl bg-[#040711] border border-cyan-400/25 group-hover/spotlight:border-cyan-300/40 shadow-lg overflow-hidden group/frame relative transition-all duration-300"
                 >
-                  {/* Subtle Hologram Scanline Sweeper */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/[0.04] to-transparent -translate-y-full group-hover/frame:translate-y-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
-
                   {/* Browser Header Bar */}
-                  <div className="px-3.5 py-2.5 bg-[#080d1a] border-b border-cyan-500/20 flex items-center justify-between">
+                  <div className="px-3 py-1.5 bg-[#080d1a] border-b border-cyan-500/20 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#ef4444]/90 shadow-[0_0_6px_rgba(239,68,68,0.5)]" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]/90 shadow-[0_0_6px_rgba(245,158,11,0.5)]" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]/90 shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
+                      <span className="w-2 h-2 rounded-full bg-[#ef4444]/90" />
+                      <span className="w-2 h-2 rounded-full bg-[#f59e0b]/90" />
+                      <span className="w-2 h-2 rounded-full bg-[#10b981]/90" />
                     </div>
 
-                    <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#0d1829] border border-cyan-500/35 text-[10px] font-mono font-medium text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_6px_rgba(6,182,212,1)]" />
-                      <span>https://priyoful-school-management-system.vercel.app</span>
+                    <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#0d1829] border border-cyan-500/30 text-[9.5px] font-mono text-cyan-300 truncate max-w-[200px] sm:max-w-xs">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+                      <span className="truncate">priyoful-school-management-system.vercel.app</span>
                     </div>
 
                     <div className="flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/50" />
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/30" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/40" />
                     </div>
                   </div>
 
@@ -296,28 +271,27 @@ export default function Projects({
                     <img 
                       src="/images/projects/priyoful.jpg" 
                       alt="Priyoful School Management System Preview"
-                      className="w-full h-full object-cover group-hover/frame:scale-105 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover group-hover/frame:scale-103 transition-transform duration-500 ease-out"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#040711] via-transparent to-transparent opacity-70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#040711]/90 via-transparent to-transparent opacity-60" />
                     
-                    {/* Floating Telemetry Glass Badge */}
-                    <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-[#070b16]/90 border border-cyan-400/30 backdrop-blur-md flex items-center justify-between shadow-[0_8px_25px_rgba(0,0,0,0.6),0_0_15px_rgba(6,182,212,0.15)]">
-                      <div className="flex items-center gap-2.5">
-                        <div className="relative w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500/20 via-indigo-500/30 to-purple-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-[11px] font-mono font-bold shadow-[0_0_12px_rgba(6,182,212,0.3)]">
-                          <span className="animate-pulse">ERP</span>
+                    {/* Micro Overlay Banner */}
+                    <div className="absolute bottom-2 left-2 right-2 p-2 rounded-lg bg-[#070b16]/90 border border-cyan-400/25 backdrop-blur-md flex items-center justify-between shadow-md">
+                      <div className="flex items-center gap-2">
+                        <div className="w-6 h-6 rounded-md bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 text-[10px] font-mono font-bold shrink-0">
+                          ERP
                         </div>
-                        <div>
-                          <p className="text-xs font-bold text-white leading-none flex items-center gap-1.5">
-                            Priyoful School ERP & Management
-                            <Sparkles size={11} className="text-amber-400 animate-spin" style={{ animationDuration: '4s' }} />
+                        <div className="truncate">
+                          <p className="text-[11px] font-bold text-white leading-tight truncate">
+                            Priyoful School ERP
                           </p>
-                          <p className="text-[10px] text-cyan-200/80 mt-1 font-mono">Full-Stack Educational Operating System</p>
+                          <p className="text-[9px] text-cyan-200/70 font-mono truncate">Educational Operating System</p>
                         </div>
                       </div>
-                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[10px] font-semibold tracking-wider">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                        <span>LIVE ON VERCEL</span>
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-[9px] font-semibold tracking-wider shrink-0">
+                        <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping" />
+                        <span>LIVE</span>
                       </span>
                     </div>
                   </div>
@@ -325,67 +299,51 @@ export default function Projects({
               </div>
 
               {/* Right Column: Project Details & Actions */}
-              <div className="lg:col-span-5 flex flex-col justify-center space-y-4">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="px-3 py-1 rounded-full bg-[#0a1e30] border border-cyan-400/40 text-cyan-300 text-[11px] font-mono font-semibold tracking-wide shadow-[0_0_15px_rgba(6,182,212,0.18)]">
-                    React + TypeScript + Full Stack
+              <div className="lg:col-span-6 flex flex-col justify-center space-y-2.5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#0a1e30] border border-cyan-400/35 text-cyan-300 text-[10px] font-mono font-medium tracking-wide">
+                    React · TypeScript · Full Stack
                   </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-[11px] font-semibold tracking-wide shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-                    <Star size={12} className="fill-amber-400 text-amber-400 animate-pulse" />
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-[10px] font-semibold tracking-wide">
+                    <Star size={10} className="fill-amber-400 text-amber-400" />
                     <span>Featured Masterpiece</span>
                   </span>
                 </div>
 
                 <div>
-                  <h4 className="text-xl sm:text-2xl lg:text-[1.7rem] font-display font-bold text-white leading-snug tracking-tight group-hover/spotlight:text-cyan-100 transition-colors">
-                    Priyoful School Management System – Modern Educational ERP Platform
+                  <h4 className="text-base sm:text-lg font-display font-bold text-white leading-snug tracking-tight group-hover/spotlight:text-cyan-100 transition-colors">
+                    Priyoful School Management System – Educational ERP
                   </h4>
-                  <p className="text-slate-400 text-xs sm:text-[13px] leading-relaxed mt-2.5">
-                    An all-in-one educational ERP and school management solution crafted for &apos;Priyoful&apos; non-profit organization to streamline student &amp; teacher administration, real-time attendance, exam grading, routine schedules, and fee ledgers into a modern, unified portal.
+                  <p className="text-slate-400 text-xs leading-relaxed mt-1.5">
+                    An all-in-one educational ERP built for &apos;Priyoful&apos; organization to streamline admissions, automated exam grading, real-time attendance, and fee accounting.
                   </p>
                 </div>
 
-                {/* Animated Highlights Checklist */}
-                <div className="space-y-2.5 pt-1">
+                {/* Highlights List */}
+                <div className="space-y-1.5 py-0.5">
                   {[
-                    {
-                      label: "Student & Teacher Management:",
-                      desc: "Complete admissions lifecycle, profile directories & role permissions."
-                    },
-                    {
-                      label: "Academic & Exam Operations:",
-                      desc: "Automated gradebook calculations, report card generation & routine planner."
-                    },
-                    {
-                      label: "Accounts & Fee Ledger:",
-                      desc: "Tuition collection records, fee invoices & financial transparency."
-                    }
+                    { label: "Student & Staff Directory:", desc: "Admissions, profiles & role permissions." },
+                    { label: "Examinations & Grading:", desc: "Automated GPA calculation & report cards." },
+                    { label: "Accounts & Tuition Ledgers:", desc: "Fee collections & payment invoices." }
                   ].map((item, idx) => (
-                    <motion.div 
-                      key={idx}
-                      whileHover={{ x: 4 }}
-                      transition={{ duration: 0.18, ease: "easeOut" }}
-                      className="flex items-start gap-2.5 p-1.5 -ml-1.5 rounded-lg hover:bg-white/[0.03] transition-colors"
-                    >
-                      <div className="w-4 h-4 rounded-full border border-cyan-400 bg-cyan-500/10 shadow-[0_0_8px_rgba(6,182,212,0.4)] flex items-center justify-center text-cyan-300 shrink-0 mt-0.5">
-                        <Check size={9} strokeWidth={3} />
+                    <div key={idx} className="flex items-start gap-2 text-xs">
+                      <div className="w-3.5 h-3.5 rounded-full border border-cyan-400/80 bg-cyan-500/10 flex items-center justify-center text-cyan-300 shrink-0 mt-0.5">
+                        <Check size={8} strokeWidth={3} />
                       </div>
-                      <span className="text-xs text-slate-300 leading-snug font-normal">
+                      <span className="text-[11.5px] text-slate-300 leading-snug">
                         <strong className="text-white font-medium">{item.label}</strong> {item.desc}
                       </span>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
 
-                <div className="pt-1">
-                  <p className="text-[10px] font-mono font-bold uppercase tracking-[0.16em] text-cyan-400/90 mb-2">
-                    TECHNOLOGIES USED
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
+                {/* Tech Pills */}
+                <div className="pt-0.5">
+                  <div className="flex flex-wrap gap-1">
                     {["React", "TypeScript", "Tailwind CSS", "Node.js", "Full Stack", "Vercel"].map((tech) => (
                       <span 
                         key={tech}
-                        className="px-2.5 py-1 rounded-md bg-[#0b1424] hover:bg-[#101c34] border border-cyan-500/20 hover:border-cyan-400/50 text-slate-300 hover:text-cyan-200 text-[11px] font-mono transition-all"
+                        className="px-2 py-0.5 rounded bg-[#0b1424] border border-cyan-500/20 text-slate-300 text-[10px] font-mono"
                       >
                         {tech}
                       </span>
@@ -393,18 +351,17 @@ export default function Projects({
                   </div>
                 </div>
 
-                {/* Action Buttons with High-Tech Shimmer and Glowing Interactions */}
-                <div className="flex flex-wrap items-center gap-2.5 pt-2">
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-2 pt-1.5">
                   <motion.a
                     href="https://priyoful-school-management-system.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    className="relative inline-flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-600 text-[#030712] font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(6,182,212,0.5)] hover:shadow-[0_0_35px_rgba(6,182,212,0.8)] transition-all overflow-hidden group/btn cursor-pointer"
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="relative inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 via-sky-500 to-indigo-600 text-[#030712] font-black text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_22px_rgba(6,182,212,0.6)] transition-all cursor-pointer"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
-                    <ExternalLink size={13} strokeWidth={2.5} className="group-hover/btn:rotate-12 transition-transform" />
+                    <ExternalLink size={12} strokeWidth={2.5} />
                     <span>Live Demo</span>
                   </motion.a>
 
@@ -412,21 +369,21 @@ export default function Projects({
                     href="https://github.com/Rashidulhaq/Priyoful-School-Management-System"
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#0b1220] hover:bg-[#121c32] border border-cyan-400/35 hover:border-cyan-300 text-white font-bold text-xs shadow-[0_0_15px_rgba(6,182,212,0.15)] hover:shadow-[0_0_22px_rgba(6,182,212,0.35)] transition-all cursor-pointer"
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#0b1220] hover:bg-[#121c32] border border-cyan-400/30 hover:border-cyan-300 text-white font-bold text-xs transition-all cursor-pointer"
                   >
-                    <Github size={13} className="text-cyan-400" />
+                    <Github size={12} className="text-cyan-400" />
                     <span>GitHub</span>
                   </motion.a>
 
                   <motion.button
                     onClick={() => setActiveProjectModal(PORTFOLIO_DATA.projects[0])}
-                    whileHover={{ scale: 1.04, y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500/15 to-purple-500/15 hover:from-indigo-500/25 hover:to-purple-500/25 border border-indigo-400/35 hover:border-indigo-300 text-cyan-200 font-bold text-xs shadow-[0_0_15px_rgba(99,102,241,0.2)] hover:shadow-[0_0_22px_rgba(99,102,241,0.4)] transition-all cursor-pointer"
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-500/15 hover:bg-indigo-500/25 border border-indigo-400/30 hover:border-indigo-300 text-cyan-200 font-bold text-xs transition-all cursor-pointer"
                   >
-                    <Code2 size={13} className="text-indigo-400" />
+                    <Code2 size={12} className="text-indigo-400" />
                     <span>Details</span>
                   </motion.button>
                 </div>
