@@ -87,9 +87,18 @@ export default function App() {
         return;
       }
 
+      /* 
+      // PREVIOUS RESUME VIEW HASH CODE (Commented out as requested - uncomment if internal #resume page is needed):
       if (hash === 'resume') {
         setCurrentView('resume');
         window.scrollTo({ top: 0, behavior: 'instant' });
+      } else 
+      */
+      if (hash === 'resume' || hash === 'cv') {
+        // Open official PDF document in a new tab as requested, and stay on home view
+        window.open('/CV/Rashidul_Haq_CV.pdf', '_blank');
+        setCurrentView('home');
+        window.history.replaceState(null, '', window.location.pathname);
       } else if (hash === 'blog') {
         setCurrentView('blog');
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -170,6 +179,10 @@ export default function App() {
   */
 
   const toggleView = (view: "home" | "resume" | "blog" | "live") => {
+    if (view === "resume") {
+      window.open("/CV/Rashidul_Haq_CV.pdf", "_blank");
+      return;
+    }
     // If we're going home, we clear the hash for a "fresh" URL
     if (view === "home") {
       setCurrentView("home");
@@ -229,7 +242,7 @@ export default function App() {
                   }}
                 >
                   <main>
-                    <Hero />
+                    <Hero onShowResume={() => toggleView("resume")} />
                     <About 
                       onShowResume={() => toggleView("resume")} 
                       onSetPortfolioTab={handleSetPortfolioTab}
@@ -341,7 +354,9 @@ export default function App() {
                 </AnimatePresence>
               </motion.div>
             ) : currentView === "resume" ? (
-              <Resume key="resume" onBack={() => toggleView("home")} />
+              // PREVIOUS RESUME VIEW COMPONENT (Commented out as requested - uncomment if internal resume page is needed):
+              // <Resume key="resume" onBack={() => toggleView("home")} />
+              null
             ) : currentView === "blog" ? (
               <BlogPage key="blog" onBack={() => toggleView("home")} />
             ) : (

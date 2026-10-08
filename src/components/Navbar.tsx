@@ -202,22 +202,28 @@ export default function Navbar({ onShowResume, onShowBlog }: { onShowResume?: ()
             </motion.a>
           ))}
 
-          {/* Quick CV Button Pill */}
-          <motion.button
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: NAV_ITEMS.length * 0.04 }}
+          {/* Quick CV Button Pill - Opens official PDF in new tab */}
+          <motion.a
+            href="/CV/Rashidul_Haq_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            /* 
+            // PREVIOUS PAGE CODE (Commented out as requested - uncomment if internal #resume page is needed):
             onClick={(e) => {
               e.preventDefault();
               onShowResume?.();
             }}
+            */
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: NAV_ITEMS.length * 0.04 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-cyan-500/15 to-indigo-500/15 hover:from-cyan-500/25 hover:to-indigo-500/25 border border-cyan-400/40 hover:border-cyan-300 text-cyan-300 hover:text-white text-[10px] xl:text-[11px] uppercase tracking-[0.14em] font-extrabold transition-all cursor-pointer shadow-[0_0_12px_rgba(6,182,212,0.2)] group"
           >
             <FileText size={11} className="text-cyan-400 group-hover:scale-110 transition-transform" />
             <span>CV</span>
-          </motion.button>
+          </motion.a>
         </div>
 
         {/* ========================================================= */}
@@ -323,17 +329,24 @@ export default function Navbar({ onShowResume, onShowBlog }: { onShowResume?: ()
                   <Sparkles size={11} className="text-cyan-200" />
                 </button>
 
-                <button
+                <a
+                  href="/CV/Rashidul_Haq_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  /* 
+                  // PREVIOUS PAGE CODE (Commented out as requested - uncomment if internal #resume page is needed):
                   onClick={(e) => {
                     e.preventDefault();
                     onShowResume?.();
                     setIsOpen(false);
                   }}
+                  */
                   className="w-full py-2.5 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-cyan-400/30 text-cyan-300 font-bold uppercase tracking-[0.14em] text-[11px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer active:scale-95"
                 >
                   <FileText size={11} />
                   <span>View CV</span>
-                </button>
+                </a>
               </div>
             </div>
           </motion.div>

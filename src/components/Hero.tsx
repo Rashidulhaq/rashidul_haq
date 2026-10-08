@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { ExternalLink, Mail, Github, Linkedin, Instagram, Sparkles, Facebook } from "lucide-react";
+import { ExternalLink, Mail, Github, Linkedin, Instagram, Sparkles, Facebook, Code2, Download, ArrowUpRight } from "lucide-react";
 import { PORTFOLIO_DATA } from "../constants";
 
 const SOCIAL_STYLES: Record<string, { bg: string, text: string, shadow: string, glow: string }> = {
@@ -36,7 +36,45 @@ const SOCIAL_STYLES: Record<string, { bg: string, text: string, shadow: string, 
   },
 };
 
-export default function Hero() {
+const HERO_TECH = [
+  { 
+    name: "React", 
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    color: "#61DAFB",
+    glow: "rgba(97, 218, 251, 0.3)"
+  },
+  { 
+    name: "Next.js", 
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    color: "#ffffff",
+    glow: "rgba(255, 255, 255, 0.25)",
+    isCircleBg: true
+  },
+  { 
+    name: "Tailwind CSS", 
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    color: "#38BDF8",
+    glow: "rgba(56, 189, 248, 0.3)"
+  },
+  { 
+    name: "Node.js", 
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    color: "#68A063",
+    glow: "rgba(104, 160, 99, 0.3)"
+  },
+  { 
+    name: "MongoDB", 
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    color: "#47A248",
+    glow: "rgba(71, 162, 72, 0.3)"
+  },
+];
+
+interface HeroProps {
+  onShowResume?: () => void;
+}
+
+export default function Hero({ onShowResume }: HeroProps) {
   const [skillIndex, setSkillIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -88,14 +126,14 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-display font-black tracking-tight leading-[1.1] mb-5"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-display font-extrabold tracking-[-0.03em] leading-[1.1] mb-5 text-center lg:text-left"
             >
               <div className="overflow-hidden">
                 <motion.span 
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                  className="block text-white/95 drop-shadow-sm"
+                  className="block text-white/95 drop-shadow-sm font-display tracking-tight"
                 >
                   Frontend
                 </motion.span>
@@ -105,7 +143,7 @@ export default function Hero() {
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-                  className="block bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#ec4899] bg-clip-text text-transparent drop-shadow-[0_8px_30px_rgba(168,85,247,0.3)] pb-2 filter saturate-[1.2]"
+                  className="block bg-gradient-to-r from-[#6366f1] via-[#a855f7] to-[#ec4899] bg-clip-text text-transparent drop-shadow-[0_8px_30px_rgba(168,85,247,0.3)] pb-2 filter saturate-[1.2] font-display"
                 >
                   Developer
                 </motion.span>
@@ -116,92 +154,134 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="h-8 mb-5"
+              className="h-9 mb-5 flex items-center justify-center lg:justify-start"
             >
-              <p className="text-base md:text-lg font-medium text-white/75 italic tracking-tight">
-                {displayText}<span className="text-[#a855f7] animate-pulse inline-block ml-0.5">|</span>
-              </p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/[0.04] border border-white/10 backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping inline-block" />
+                <p className="text-xs sm:text-sm font-medium text-slate-200 tracking-wide font-sans">
+                  {displayText}<span className="text-[#a855f7] animate-pulse inline-block ml-0.5 font-bold">|</span>
+                </p>
+              </div>
             </motion.div>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-neutral-subtle text-sm sm:text-base leading-relaxed max-w-lg mb-8 font-normal opacity-85"
+              className="text-slate-300/85 text-xs sm:text-sm sm:leading-relaxed max-w-lg mb-8 font-normal font-sans text-center lg:text-left"
             >
               Creating Innovative, Functional, and User-Friendly Websites for Digital Solutions.
             </motion.p>
 
-            {/* Tech Stack Pills */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-12">
-              {["React", "Javascript", "Node.js", "Tailwind"].map((tech, i) => (
-                <motion.span 
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            {/* Tech Stack Picture Badges (with official logo images) */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2.5 sm:gap-3 mb-12">
+              {HERO_TECH.map((tech, i) => (
+                <motion.div 
+                  key={tech.name}
+                  initial={{ opacity: 0, scale: 0.85, y: 15 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ 
-                    duration: 0.5, 
-                    delay: 0.8 + (i * 0.1),
+                    duration: 0.45, 
+                    delay: 0.7 + (i * 0.08),
                     type: "spring",
-                    stiffness: 100 
+                    stiffness: 120 
                   }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 md:px-6 md:py-2.5 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] uppercase font-black tracking-[0.2em] text-white/40 hover:text-white hover:border-[#a855f7]/40 hover:bg-[#a855f7]/5 transition-all cursor-default shadow-[0_0_20px_rgba(0,0,0,0.3)] relative group overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -3,
+                    transition: { duration: 0.2, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.96 }}
+                  className="group relative inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-slate-900/70 hover:bg-slate-800/90 backdrop-blur-md border border-white/10 hover:border-cyan-400/50 rounded-xl text-xs sm:text-[13px] font-semibold text-slate-200 hover:text-white transition-all duration-300 shadow-sm hover:shadow-[0_4px_20px_rgba(6,182,212,0.18)] cursor-pointer overflow-hidden"
                 >
-                  <span className="relative z-10">{tech}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/10 via-[#a855f7]/10 to-[#ec4899]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.span>
+                  {/* Subtle Tech Glow on Hover */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{ background: `radial-gradient(circle at center, ${tech.glow} 0%, transparent 70%)` }}
+                  />
+
+                  {/* Picture / Logo Image */}
+                  <div className={`shrink-0 flex items-center justify-center ${tech.isCircleBg ? "w-4 h-4 sm:w-4.5 sm:h-4.5 p-0.5 bg-white/10 rounded-full" : "w-4 h-4 sm:w-4.5 sm:h-4.5"}`}>
+                    <img 
+                      src={tech.icon} 
+                      alt={tech.name} 
+                      className="w-full h-full object-contain filter drop-shadow group-hover:scale-110 transition-transform duration-300 relative z-10"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Tech Name */}
+                  <span className="relative z-10 tracking-wide font-sans">{tech.name}</span>
+                </motion.div>
               ))}
             </div>
 
-            {/* Buttons */}
+            {/* Buttons - Eye-Catching & Professional Pair */}
             <div 
-              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 mb-16 text-white"
+              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-5 mb-16 text-white"
             >
+              {/* Projects Button */}
               <motion.a 
                 href="#projects"
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ 
-                  scale: 1.02, 
+                  scale: 1.03, 
                   y: -2,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative px-8 md:px-11 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#4f46e5]/20 hover:border-[#4f46e5]/50 transition-colors group overflow-hidden w-full sm:w-auto"
+                whileTap={{ scale: 0.97 }}
+                className="relative px-7 sm:px-9 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500/20 via-indigo-600/25 to-blue-600/20 hover:from-cyan-500/35 hover:via-indigo-600/40 hover:to-blue-600/35 border border-cyan-400/40 hover:border-cyan-300 shadow-[0_0_25px_rgba(6,182,212,0.2)] hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] backdrop-blur-xl group overflow-hidden transition-all duration-300 w-full sm:w-auto cursor-pointer"
               >
-                {/* Premium Glow Layers */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/0 via-[#4f46e5]/5 to-[#4f46e5]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4f46e5]/0 via-[#4f46e5]/20 to-[#4f46e5]/0 blur-md group-hover:animate-pulse" />
+                {/* Premium Glow & Shimmer Layers */}
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/0 via-cyan-400/20 to-cyan-400/0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-out" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/0 via-cyan-500/30 to-indigo-500/0 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/0 via-[#4f46e5]/10 to-[#4f46e5]/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center justify-center gap-3 text-neutral-100">
-                  Projects <ExternalLink size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 text-[#4f46e5]" />
+                <span className="relative z-10 flex items-center justify-center gap-2.5 text-white tracking-wide text-sm sm:text-[15px]">
+                  <Code2 size={19} className="text-cyan-300 group-hover:rotate-12 transition-transform duration-300" />
+                  <span>Projects</span>
+                  <ArrowUpRight size={17} className="text-cyan-300/80 group-hover:text-cyan-200 transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </motion.a>
+
+              {/* Download CV Button - Opens the official document PDF in a new page/tab */}
               <motion.a 
-                href="https://wa.me/8801912196464"
+                href="/CV/Rashidul_Haq_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: 50 }}
+                /* 
+                // PREVIOUS PAGE CODE (Commented out as requested - uncomment if internal #resume page is needed):
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onShowResume) {
+                    onShowResume();
+                  } else {
+                    window.location.hash = "resume";
+                  }
+                }}
+                */
+                initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ 
-                  scale: 1.02, 
+                  scale: 1.03, 
                   y: -2,
                   transition: { duration: 0.2, ease: "easeOut" }
                 }}
-                whileTap={{ scale: 0.98 }}
-                className="relative px-8 md:px-11 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#ec4899]/20 hover:border-[#ec4899]/50 transition-colors group overflow-hidden w-full sm:w-auto"
+                whileTap={{ scale: 0.97 }}
+                className="relative px-7 sm:px-9 py-4 rounded-2xl font-bold flex items-center justify-center gap-3 bg-gradient-to-r from-amber-500/20 via-orange-600/25 to-rose-600/20 hover:from-amber-500/35 hover:via-orange-600/40 hover:to-rose-600/35 border border-amber-400/40 hover:border-amber-300 shadow-[0_0_25px_rgba(245,158,11,0.2)] hover:shadow-[0_0_40px_rgba(245,158,11,0.4)] backdrop-blur-xl group overflow-hidden transition-all duration-300 w-full sm:w-auto cursor-pointer"
               >
-                {/* Premium Glow Layers */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ec4899]/0 via-[#ec4899]/5 to-[#ec4899]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#ec4899]/0 via-[#ec4899]/20 to-[#ec4899]/0 blur-md group-hover:animate-pulse" />
-
-                <div className="absolute inset-0 bg-gradient-to-r from-[#ec4899]/0 via-[#ec4899]/5 to-[#ec4899]/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                <span className="relative z-10 flex items-center justify-center gap-3 text-neutral-100">
-                  Contact <Mail size={18} className="group-hover:scale-110 transition-transform duration-300 text-[#ec4899]" />
+                {/* Premium Glow & Shimmer Layers */}
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/0 via-amber-400/20 to-amber-400/0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-out" />
+                <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/0 via-amber-500/30 to-orange-500/0 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <span className="relative z-10 flex items-center justify-center gap-2.5 text-white tracking-wide text-sm sm:text-[15px]">
+                  <Download size={19} className="text-amber-300 group-hover:-translate-y-0.5 group-hover:scale-110 transition-transform duration-300" />
+                  <span>Download CV</span>
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-amber-400/20 border border-amber-400/35 text-amber-200 tracking-wider">
+                    PDF
+                  </span>
                 </span>
               </motion.a>
             </div>
@@ -325,6 +405,108 @@ export default function Hero() {
               {/* Floating Accents */}
               <div className="absolute top-1/4 -left-4 w-3 h-3 bg-[#a855f7] rounded-full blur-[1px] animate-pulse" />
               <div className="absolute bottom-1/3 -right-4 w-2 h-2 bg-purple-500 rounded-full blur-[1px] animate-ping" />
+
+              {/* Floating Tech Picture Badges with Eye-Catching Gentle Bounce */}
+              {/* React Badge */}
+              <motion.div
+                animate={{ 
+                  y: [0, -15, 0, -5, 0],
+                  rotate: [0, -2, 0, 2, 0],
+                  scale: [1, 1.04, 1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.6, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                whileHover={{ scale: 1.15, y: -8 }}
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 backdrop-blur-md border border-cyan-400/40 shadow-[0_0_20px_rgba(6,182,212,0.3)] absolute -top-5 -left-2 sm:-left-6 z-20 cursor-pointer transition-shadow hover:shadow-[0_0_30px_rgba(6,182,212,0.55)]"
+              >
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow" />
+                <span className="text-xs sm:text-[13px] font-bold text-white font-sans tracking-wide">React</span>
+              </motion.div>
+
+              {/* Next.js Badge */}
+              <motion.div
+                animate={{ 
+                  y: [0, -13, 0, -4, 0],
+                  rotate: [0, 2, 0, -2, 0],
+                  scale: [1, 1.04, 1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.8, 
+                  repeat: Infinity, 
+                  ease: "easeInOut", 
+                  delay: 0.5 
+                }}
+                whileHover={{ scale: 1.15, y: -8 }}
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/30 shadow-[0_0_20px_rgba(255,255,255,0.2)] absolute top-8 -right-3 sm:-right-8 z-20 cursor-pointer transition-shadow hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+              >
+                <div className="w-4 h-4 sm:w-5 sm:h-5 p-0.5 bg-white/10 rounded-full flex items-center justify-center">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" className="w-full h-full object-contain filter drop-shadow" />
+                </div>
+                <span className="text-xs sm:text-[13px] font-bold text-white font-sans tracking-wide">Next.js</span>
+              </motion.div>
+
+              {/* Node.js Badge */}
+              <motion.div
+                animate={{ 
+                  y: [0, -14, 0, -5, 0],
+                  rotate: [0, -2, 0, 3, 0],
+                  scale: [1, 1.04, 1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.7, 
+                  repeat: Infinity, 
+                  ease: "easeInOut", 
+                  delay: 1.0 
+                }}
+                whileHover={{ scale: 1.15, y: -8 }}
+                className="hidden sm:flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 backdrop-blur-md border border-emerald-400/40 shadow-[0_0_20px_rgba(52,211,153,0.3)] absolute top-1/2 -left-8 -translate-y-1/2 z-20 cursor-pointer transition-shadow hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]"
+              >
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" className="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow" />
+                <span className="text-xs sm:text-[13px] font-bold text-white font-sans tracking-wide">Node.js</span>
+              </motion.div>
+
+              {/* MongoDB Badge */}
+              <motion.div
+                animate={{ 
+                  y: [0, -12, 0, -4, 0],
+                  rotate: [0, 3, 0, -2, 0],
+                  scale: [1, 1.04, 1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.9, 
+                  repeat: Infinity, 
+                  ease: "easeInOut", 
+                  delay: 1.5 
+                }}
+                whileHover={{ scale: 1.15, y: -8 }}
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 backdrop-blur-md border border-green-500/40 shadow-[0_0_20px_rgba(34,197,94,0.3)] absolute -bottom-5 -left-1 sm:-left-6 z-20 cursor-pointer transition-shadow hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]"
+              >
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" className="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow" />
+                <span className="text-xs sm:text-[13px] font-bold text-white font-sans tracking-wide">MongoDB</span>
+              </motion.div>
+
+              {/* Tailwind CSS Badge */}
+              <motion.div
+                animate={{ 
+                  y: [0, -15, 0, -5, 0],
+                  rotate: [0, -3, 0, 2, 0],
+                  scale: [1, 1.04, 1, 1.02, 1]
+                }}
+                transition={{ 
+                  duration: 2.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut", 
+                  delay: 2.0 
+                }}
+                whileHover={{ scale: 1.15, y: -8 }}
+                className="flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-slate-900/90 backdrop-blur-md border border-sky-400/40 shadow-[0_0_20px_rgba(56,189,248,0.35)] absolute bottom-4 -right-3 sm:-right-8 z-20 cursor-pointer transition-shadow hover:shadow-[0_0_30px_rgba(56,189,248,0.6)]"
+              >
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" className="w-4 h-4 sm:w-5 sm:h-5 object-contain filter drop-shadow" />
+                <span className="text-xs sm:text-[13px] font-bold text-white font-sans tracking-wide">Tailwind CSS</span>
+              </motion.div>
             </motion.div>
             
             {/* Floating bubbles */}

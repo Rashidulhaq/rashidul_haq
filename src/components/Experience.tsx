@@ -81,7 +81,7 @@ export default function Experience({ onShowResume }: { onShowResume?: () => void
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-[28px] md:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight leading-tight">
               Work <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_12px_rgba(6,182,212,0.25)]">Experience</span>
             </h2>
             <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-2 opacity-80" />

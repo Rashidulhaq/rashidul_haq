@@ -62,11 +62,11 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-[28px] md:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight leading-tight">
               My <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Blog</span>
             </h2>
             <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
-            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
+            <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3 opacity-80" />
           </motion.div>
           
           <motion.p 
@@ -74,9 +74,9 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 mb-4 leading-relaxed"
+            className="text-slate-400 text-xs sm:text-sm font-normal max-w-xl mx-auto mt-3 mb-3 leading-relaxed"
           >
-            Technical articles exploring deep learning research, software testing methodologies, and offline-first web architectures.
+            Technical articles exploring deep learning research, modern full-stack development, and offline-first web architectures.
           </motion.p>
         </motion.div>
 

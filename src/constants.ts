@@ -303,34 +303,143 @@ export const PORTFOLIO_DATA = {
     { name: "T.M. Amir-Ul-Haque Bhuiyan", role: "Assistant Professor, Dept. of CSE, BUBT", email: "amir@bubt.edu.bd" }
   ],
   techStack: [
-    { name: "ReactJS", category: "Frontend", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { name: "TypeScript", category: "Languages", level: "Proficient", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-    { name: "JavaScript", category: "Languages", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-    { name: "Tailwind CSS", category: "Frontend", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-    { name: "HTML5", category: "Frontend", level: "Expert", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-    { name: "CSS3", category: "Frontend", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
-    { name: "Vite", category: "Frontend", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg" },
-    { name: "Node JS", category: "Backend", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { name: "Express.js", category: "Backend", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-    { name: "Firebase", category: "Backend & Cloud", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" },
-    { name: "MySQL", category: "Backend & Cloud", level: "Proficient", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { name: "Python", category: "Languages", level: "Proficient", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-    { name: "PHP", category: "Backend", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-    { name: "C#", category: "Languages", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-    { name: "Bootstrap", category: "Frontend", level: "Proficient", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-    { name: "Material UI", category: "Frontend", level: "Intermediate", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
-    { name: "GitHub", category: "Tools & DevOps", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-    { name: "Git", category: "Tools & DevOps", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-    { name: "Vercel", category: "Tools & DevOps", level: "Advanced", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
-    { name: "SweetAlert2", category: "Frontend", level: "Proficient", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" },
+    { 
+      name: "ReactJS", 
+      category: "Frontend", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      usedIn: "Priyoful ERP, Khorcha AI, Portfolio"
+    },
+    { 
+      name: "Next.js", 
+      category: "Frontend", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+      usedIn: "Modern SSR Web Apps & Full-Stack Projects"
+    },
+    { 
+      name: "Tailwind CSS", 
+      category: "Frontend", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+      usedIn: "Priyoful ERP, Khorcha AI, Portfolio"
+    },
+    { 
+      name: "Node.js", 
+      category: "Backend", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      usedIn: "Priyoful ERP Backend, API Services"
+    },
+    { 
+      name: "Express.js", 
+      category: "Backend", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      usedIn: "Khorcha AI Server, REST Endpoints"
+    },
+    { 
+      name: "MongoDB", 
+      category: "Database", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      usedIn: "MERN Stack Projects, Cloud Collections"
+    },
+    { 
+      name: "JavaScript", 
+      category: "Core Languages", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      usedIn: "My Note PWA, Hishab Calc, SPAs"
+    },
+    { 
+      name: "TypeScript", 
+      category: "Core Languages", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      usedIn: "Priyoful ERP, Khorcha AI, Portfolio"
+    },
+    { 
+      name: "Google Gemini AI", 
+      category: "AI & Cloud", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+      usedIn: "Khorcha AI (Expense Intelligence)"
+    },
+    { 
+      name: "Python", 
+      category: "Core Languages", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      usedIn: "Thesis: Emotion Music Recommendation"
+    },
+    { 
+      name: "Firebase", 
+      category: "Database", 
+      level: "Intermediate", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg",
+      usedIn: "AI Summit Real-time DB & Cloud Auth"
+    },
+    { 
+      name: "HTML5 / CSS3", 
+      category: "Frontend", 
+      level: "Expert", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      usedIn: "Semantic Markup & Modern Responsive UI"
+    },
+    { 
+      name: "Postman", 
+      category: "Tools & DevOps", 
+      level: "Proficient", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+      usedIn: "REST API Verification & Endpoint Testing"
+    },
+    { 
+      name: "Git & GitHub", 
+      category: "Tools & DevOps", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      usedIn: "Version Control, Pull Requests & CI/CD"
+    },
+    { 
+      name: "Vercel", 
+      category: "Tools & DevOps", 
+      level: "Advanced", 
+      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+      usedIn: "Edge Deployments, Serverless Functions"
+    }
   ],
-  qaSkills: [
-    { name: "Manual Testing", description: "Comprehensive functional, regression, sanity, and exploratory testing" },
-    { name: "STLC & SDLC", description: "Software Testing Life Cycle execution, requirements analysis, test planning" },
-    { name: "Agile & Scrum", description: "Sprint planning, backlog grooming, daily standups, and retrospective workflows" },
-    { name: "Bug Tracking & JIRA", description: "Detailed defect reporting with reproduction steps, severity, and logs" },
-    { name: "Test Case Design", description: "Boundary value analysis, equivalence partitioning, and decision tables" },
-    { name: "API Testing (Postman)", description: "Endpoint verification, payload validation, and HTTP status verification" },
+  fullStackArchitecture: [
+    { 
+      name: "Frontend (Client Tier)", 
+      tools: "React 19, Next.js, Tailwind CSS", 
+      description: "Crafting fluid, high-performance SPAs and SSR apps with modern UX and state management" 
+    },
+    { 
+      name: "Backend (Server Tier)", 
+      tools: "Node.js, Express.js, REST APIs", 
+      description: "Developing scalable microservices, JWT authentication, middleware pipelines, and CRUD APIs" 
+    },
+    { 
+      name: "Database (Data Tier)", 
+      tools: "MongoDB Atlas, Mongoose, Firebase", 
+      description: "Designing fast NoSQL schema models, collections, indexing, and cloud persistence" 
+    },
+    { 
+      name: "AI & Smart Integrations", 
+      tools: "Google Gemini AI, LLM APIs, Python", 
+      description: "Infusing web apps with natural language processing, intelligent analytics, and automated insights" 
+    },
+    { 
+      name: "API Testing & Tooling", 
+      tools: "Postman, REST Spec, JSON APIs", 
+      description: "Validating API contracts, request payloads, response codes, and network latency" 
+    },
+    { 
+      name: "CI/CD & Cloud Deployment", 
+      tools: "Git, GitHub, Vercel, Vite", 
+      description: "Automated edge deployments, branch-based workflows, and production-grade optimization" 
+    },
   ],
   gallery: {
     "Dhaka": [

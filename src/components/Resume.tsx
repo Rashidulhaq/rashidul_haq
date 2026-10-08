@@ -26,12 +26,15 @@ const Resume: React.FC<ResumeProps> = ({ onBack }) => {
             <span className="font-bold uppercase tracking-widest text-xs">Back to Portfolio</span>
           </button>
           
-          <button 
-            onClick={() => window.print()}
+          <a 
+            href="/CV/Rashidul_Haq_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Rashidul_Haq_CV.pdf"
             className="flex items-center gap-2 px-4 py-2 md:px-6 md:py-3 bg-[#4f46e5]/10 border border-[#4f46e5]/20 rounded-lg md:rounded-xl text-[#4f46e5] font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#4f46e5]/20 transition-all cursor-pointer group"
           >
             <Download size={14} className="md:size-4 group-hover:translate-y-0.5 transition-transform" /> PDF Version
-          </button>
+          </a>
         </div>
 
         {/* Resume Content */}
@@ -91,7 +94,7 @@ const Resume: React.FC<ResumeProps> = ({ onBack }) => {
                   <Star size={14} className="text-[#a855f7]" /> Key Expertise
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Agile", "SDLC", "STLC", "Manual Testing", "AI", "OOP"].map(skill => (
+                  {["MERN Stack", "React", "Next.js", "Node.js", "Express", "MongoDB", "Tailwind", "REST APIs"].map(skill => (
                     <span key={skill} className="px-3 py-1 bg-white/[0.03] border border-white/5 rounded-lg text-white/50 text-[10px] font-bold uppercase tracking-widest">{skill}</span>
                   ))}
                 </div>

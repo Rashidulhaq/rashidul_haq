@@ -8,13 +8,14 @@ import {
   GitBranch, 
   Terminal, 
   Bug, 
-  Sparkles,
-  Workflow,
-  X,
-  Code2,
-  Database,
-  ShieldCheck,
-  RotateCcw
+  Sparkles, 
+  Workflow, 
+  X, 
+  Code2, 
+  Database, 
+  ShieldCheck, 
+  RotateCcw,
+  FolderGit2
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "../constants";
 
@@ -46,8 +47,10 @@ export default function TechStack() {
   const categories = [
     "All",
     "Frontend",
-    "Backend & Cloud",
-    "Languages",
+    "Backend",
+    "Database",
+    "Core Languages",
+    "AI & Cloud",
     "Tools & DevOps"
   ];
 
@@ -56,43 +59,51 @@ export default function TechStack() {
       const matchesCategory = 
         selectedCategory === "All" || 
         tech.category === selectedCategory ||
-        (selectedCategory === "Backend & Cloud" && (tech.category.includes("Backend") || tech.category.includes("Cloud")));
+        (selectedCategory === "Frontend" && tech.category.includes("Frontend")) ||
+        (selectedCategory === "Backend" && tech.category.includes("Backend")) ||
+        (selectedCategory === "Database" && tech.category.includes("Database")) ||
+        (selectedCategory === "Core Languages" && tech.category.includes("Languages")) ||
+        (selectedCategory === "AI & Cloud" && (tech.category.includes("AI") || tech.category.includes("Cloud"))) ||
+        (selectedCategory === "Tools & DevOps" && tech.category.includes("Tools"));
         
-      const matchesSearch = 
-        tech.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tech.category.toLowerCase().includes(searchQuery.toLowerCase());
+      const q = searchQuery.toLowerCase().trim();
+      if (!q) return matchesCategory;
 
-      return matchesCategory && matchesSearch;
+      const nameMatch = tech.name.toLowerCase().includes(q);
+      const catMatch = tech.category.toLowerCase().includes(q);
+      const projectMatch = tech.usedIn ? tech.usedIn.toLowerCase().includes(q) : false;
+
+      return matchesCategory && (nameMatch || catMatch || projectMatch);
     });
   }, [selectedCategory, searchQuery]);
 
   const overviewStats = [
     {
       title: "Core Technologies",
-      value: PORTFOLIO_DATA.techStack.length || 24,
+      value: PORTFOLIO_DATA.techStack.length || 15,
       suffix: "+",
-      desc: "Languages, frameworks & libraries",
+      desc: "React, Next.js, Node, Express & MongoDB",
       icon: Code2,
       color: "from-cyan-400 to-cyan-600",
       glowColor: "rgba(6,182,212,0.25)"
     },
     {
-      title: "Full-Stack Breadth",
+      title: "MERN Stack Breadth",
       value: 100,
       suffix: "%",
-      desc: "Client, server, DB & cloud deployments",
+      desc: "Client, server, NoSQL DB & edge cloud",
       icon: Layers,
       color: "from-indigo-400 to-purple-600",
       glowColor: "rgba(99,102,241,0.25)"
     },
     {
-      title: "QA & STLC Methods",
-      value: PORTFOLIO_DATA.qaSkills?.length || 6,
+      title: "APIs & Cloud Systems",
+      value: 15,
       suffix: "+",
-      desc: "Black-box, automation & test pipelines",
-      icon: ShieldCheck,
-      color: "from-amber-400 to-rose-600",
-      glowColor: "rgba(245,158,11,0.25)"
+      desc: "REST APIs, MongoDB, Gemini AI & Vercel",
+      icon: Database,
+      color: "from-emerald-400 to-teal-600",
+      glowColor: "rgba(16,185,129,0.25)"
     }
   ];
 
@@ -158,11 +169,11 @@ export default function TechStack() {
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-[28px] md:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight leading-tight">
               Skills & <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Tech Stack</span>
             </h2>
             <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
-            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
+            <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3 opacity-80" />
           </motion.div>
 
           <motion.p 
@@ -170,9 +181,9 @@ export default function TechStack() {
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
+            className="text-slate-400 text-xs sm:text-sm font-normal max-w-xl mx-auto mt-3 leading-relaxed"
           >
-            A robust engineering foundation spanning reactive client interfaces, scalable server architectures, databases, and quality assurance methodologies.
+            Specialized engineering foundation spanning high-performance client interfaces with React & Next.js, scalable Node.js/Express backends, MongoDB databases, and AI-driven web architectures.
           </motion.p>
         </motion.div>
 
@@ -237,6 +248,42 @@ export default function TechStack() {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center gap-5 mb-14 w-full max-w-4xl mx-auto px-2"
         >
+          {/* Quick Project Stack Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-1.5 max-w-3xl mx-auto px-2">
+            <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5 mr-1">
+              <FolderGit2 size={12} className="text-cyan-400" />
+              <span>Project Stack:</span>
+            </span>
+            {[
+              { label: "MERN Stack", query: "React" },
+              { label: "Next.js Web", query: "Next" },
+              { label: "Priyoful ERP", query: "Priyoful" },
+              { label: "Khorcha AI", query: "Khorcha" },
+              { label: "Backend APIs", query: "Express" },
+              { label: "MongoDB Cloud", query: "Mongo" },
+            ].map((proj) => (
+              <button
+                key={proj.query}
+                onClick={() => {
+                  if (searchQuery.toLowerCase() === proj.query.toLowerCase()) {
+                    setSearchQuery("");
+                  } else {
+                    setSearchQuery(proj.query);
+                    setSelectedCategory("All");
+                  }
+                }}
+                className={`px-2.5 py-1 rounded-lg text-[10.5px] font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
+                  searchQuery.toLowerCase() === proj.query.toLowerCase()
+                    ? "bg-cyan-500/30 border border-cyan-400 text-cyan-200 shadow-[0_0_12px_rgba(6,182,212,0.4)]"
+                    : "bg-white/[0.03] hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-400/30 text-slate-300 hover:text-white"
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                <span>{proj.label}</span>
+              </button>
+            ))}
+          </div>
+
           {/* Category Filter Pills Container */}
           <div className="w-full sm:w-auto overflow-x-auto pb-1.5 scrollbar-hide flex justify-start sm:justify-center">
             <div className="inline-flex items-center p-1.5 sm:p-2 rounded-2xl sm:rounded-full bg-[#070e1d]/90 backdrop-blur-2xl border border-cyan-500/20 shadow-[0_10px_35px_rgba(0,0,0,0.7),0_0_20px_rgba(6,182,212,0.1)] gap-1 sm:gap-2 relative">
@@ -245,7 +292,9 @@ export default function TechStack() {
                 return (
                   <button
                     key={cat}
-                    onClick={() => setSelectedCategory(cat)}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                    }}
                     className={`group relative flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-[13px] font-medium tracking-wide transition-all whitespace-nowrap cursor-pointer z-10 ${
                       isSelected ? "text-white" : "text-slate-400 hover:text-white"
                     }`}
@@ -287,7 +336,7 @@ export default function TechStack() {
 
               <input
                 type="text"
-                placeholder="Search skill (e.g. React, TypeScript, Python, Docker)..."
+                placeholder="Search skill or project (e.g. React, Gemini, Priyoful, Python)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-transparent text-white placeholder:text-slate-500 text-xs sm:text-sm font-normal focus:outline-none"
@@ -317,7 +366,7 @@ export default function TechStack() {
                 <Sparkles size={11} className="text-cyan-400" />
                 Quick Search:
               </span>
-              {["React", "TypeScript", "Python", "Node.js", "Docker", "MongoDB"].map((tag) => (
+              {["React", "Gemini", "TypeScript", "Python", "Node.js", "Arduino", "MySQL"].map((tag) => (
                 <motion.button
                   key={tag}
                   whileHover={{ scale: 1.08, y: -1 }}
@@ -395,7 +444,7 @@ export default function TechStack() {
                     scale: 1.02,
                     transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } 
                   }}
-                  className="group relative bg-[#090d18]/85 hover:bg-[#0d1424] backdrop-blur-xl border border-white/[0.08] hover:border-cyan-400/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center transition-all duration-300 shadow-xl overflow-hidden cursor-default"
+                  className="group relative bg-[#090d18]/85 hover:bg-[#0d1424] backdrop-blur-xl border border-white/[0.08] hover:border-cyan-400/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center transition-all duration-300 shadow-xl overflow-hidden cursor-default justify-between"
                 >
                   {/* Light sweep shimmer */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/[0.08] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none z-20" />
@@ -403,83 +452,102 @@ export default function TechStack() {
                   {/* Corner Glow */}
                   <div className="absolute -inset-1 bg-gradient-to-br from-cyan-500/20 via-indigo-500/10 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                  {/* Icon Container with Micro-Zoom */}
-                  <div className="relative z-10 w-12 h-12 mb-3 flex items-center justify-center p-2 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-cyan-500/40 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">
-                    <img 
-                      src={tech.icon} 
-                      alt={tech.name} 
-                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-115"
-                    />
+                  <div className="flex flex-col items-center w-full">
+                    {/* Icon Container with Micro-Zoom */}
+                    <div className="relative z-10 w-12 h-12 mb-3 flex items-center justify-center p-2 rounded-xl bg-white/[0.03] border border-white/5 group-hover:border-cyan-500/40 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)] transition-all">
+                      <img 
+                        src={tech.icon} 
+                        alt={tech.name} 
+                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-115"
+                      />
+                    </div>
+
+                    {/* Title & Info */}
+                    <h4 className="relative z-10 text-white font-display font-bold text-xs sm:text-sm tracking-wide group-hover:text-cyan-300 transition-colors">
+                      {tech.name}
+                    </h4>
+                    
+                    <div className="relative z-10 flex items-center gap-1.5 mt-1.5">
+                      <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/[0.04] group-hover:bg-cyan-500/15 border border-white/5 group-hover:border-cyan-400/30 text-white/50 group-hover:text-cyan-200 font-mono transition-colors">
+                        {tech.category}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Title & Info */}
-                  <h4 className="relative z-10 text-white font-display font-bold text-xs sm:text-sm tracking-wide group-hover:text-cyan-300 transition-colors">
-                    {tech.name}
-                  </h4>
-                  
-                  <div className="relative z-10 flex items-center gap-1.5 mt-2">
-                    <span className="text-[9.5px] px-2 py-0.5 rounded-full bg-white/[0.04] group-hover:bg-cyan-500/15 border border-white/5 group-hover:border-cyan-400/30 text-white/50 group-hover:text-cyan-200 font-mono transition-colors">
-                      {tech.category}
-                    </span>
-                  </div>
+                  {/* Connected Projects Indicator */}
+                  {tech.usedIn && (
+                    <div className="relative z-10 w-full mt-3 pt-2 border-t border-white/5 flex flex-col items-center">
+                      <span className="text-[9.5px] text-cyan-300 font-mono tracking-tight flex items-center justify-center gap-1 group-hover:text-cyan-200 transition-colors w-full px-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+                        <span className="truncate" title={tech.usedIn}>{tech.usedIn}</span>
+                      </span>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         )}
 
-        {/* Software Engineering & QA Specialization Strip with Spring Entry */}
+        {/* Full-Stack Architecture & MERN Engineering Showcase */}
         <motion.div
           initial={{ opacity: 0, y: 25, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: false, margin: "-60px" }}
           transition={{ type: "spring", stiffness: 140, damping: 16 }}
-          className="p-6 sm:p-8 rounded-[1.8rem] bg-gradient-to-b from-[#0b1020]/95 via-[#080d1a] to-[#050812] border border-white/10 hover:border-cyan-400/30 shadow-2xl relative overflow-hidden group"
+          className="p-6 sm:p-8 rounded-[1.8rem] bg-gradient-to-b from-[#0b1020]/95 via-[#080d1a] to-[#050812] border border-cyan-500/25 hover:border-cyan-400/50 shadow-2xl relative overflow-hidden group"
         >
           {/* Subtle light sweep */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/[0.04] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/[0.04] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
 
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6 relative z-10">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-[11px] font-semibold uppercase tracking-wider mb-2">
-                <Workflow size={12} className="animate-spin-slow" />
-                <span>Software Quality & Engineering</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-300 text-[11px] font-semibold uppercase tracking-wider mb-2">
+                <Layers size={12} className="text-cyan-400" />
+                <span>Full-Stack Development Architecture</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
-                Testing, STLC & Development Lifecycle Methodologies
+                MERN Stack & Production-Ready Web Engineering
               </h3>
               <p className="text-white/50 text-xs sm:text-sm mt-1 max-w-2xl">
-                Rigorous testing standards and agile software engineering best practices applied across every sprint and release cycle.
+                End-to-end expertise delivering modern client experiences with React & Next.js, robust Express/Node APIs, scalable MongoDB databases, and cloud edge hosting.
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold flex items-center gap-1.5 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-                <CheckCircle2 size={13} className="text-emerald-400" /> STLC / SDLC Certified
+              <span className="px-3 py-1.5 rounded-xl bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold flex items-center gap-1.5 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+                <CheckCircle2 size={13} className="text-cyan-400" /> Full-Stack Production Ready
               </span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 relative z-10">
-            {PORTFOLIO_DATA.qaSkills?.map((qa, idx) => (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-indigo-400/40 transition-all flex items-start gap-3 group/qa cursor-default shadow-sm"
-              >
-                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0 group-hover/qa:scale-110 group-hover/qa:bg-indigo-500/20 transition-all">
-                  <Bug size={14} />
-                </div>
-                <div>
-                  <h4 className="text-white font-bold text-xs sm:text-sm group-hover/qa:text-indigo-300 transition-colors">
-                    {qa.name}
-                  </h4>
-                  <p className="text-white/40 text-[11px] leading-relaxed mt-0.5">
-                    {qa.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+            {PORTFOLIO_DATA.fullStackArchitecture?.map((item, idx) => {
+              const icons = [Code2, Terminal, Database, Sparkles, Workflow, ShieldCheck];
+              const IconComponent = icons[idx % icons.length];
+              return (
+                <motion.div 
+                  key={idx}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="p-4 rounded-xl bg-white/[0.02] hover:bg-white/[0.06] border border-white/5 hover:border-cyan-400/40 transition-all flex items-start gap-3 group/arch cursor-default shadow-sm"
+                >
+                  <div className="w-8 h-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0 group-hover/arch:scale-110 group-hover/arch:bg-cyan-500/20 transition-all">
+                    <IconComponent size={14} />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-bold text-xs sm:text-sm group-hover/arch:text-cyan-300 transition-colors">
+                      {item.name}
+                    </h4>
+                    <span className="inline-block text-[10px] font-mono text-cyan-300/80 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-md my-1">
+                      {item.tools}
+                    </span>
+                    <p className="text-white/40 text-[11px] leading-relaxed mt-0.5">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </motion.div>
       </div>

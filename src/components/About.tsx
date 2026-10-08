@@ -153,14 +153,14 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
           variants={{
             visible: { transition: { staggerChildren: 0.15 } }
           }}
-          className="text-center mb-14"
+          className="text-center mb-10 sm:mb-12"
         >
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.9 },
               visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } }
             }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[11px] font-semibold tracking-wider uppercase mb-3.5 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.12)]"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[11px] font-semibold tracking-wider uppercase mb-3 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.12)]"
           >
             <Sparkles size={13} className="text-cyan-400" />
             <span>Discover • My Story</span>
@@ -173,12 +173,12 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-[28px] md:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight leading-tight">
               About <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Me</span>
             </h2>
             {/* Title Glow & Accent */}
             <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
-            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
+            <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3 opacity-80" />
           </motion.div>
           
           <motion.p
@@ -186,7 +186,7 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
+            className="text-slate-400 text-xs sm:text-sm font-normal max-w-xl mx-auto mt-3 leading-relaxed"
           >
             Transforming ideas into robust digital experiences with passion, precision, and continuous learning.
           </motion.p>
@@ -273,10 +273,16 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                 </div>
               </motion.div>
 
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 md:gap-6 pt-4 text-white">
-                <motion.button 
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
+                {/* View Full CV Button - Opens the official document PDF in a new page/tab */}
+                <motion.a 
+                  href="/CV/Rashidul_Haq_CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  /* 
+                  // PREVIOUS PAGE CODE (Commented out as requested - uncomment if internal #resume page is needed):
                   onClick={onShowResume}
+                  */
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: false }}
@@ -287,7 +293,7 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                     transition: { duration: 0.2, ease: "easeOut" }
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="relative px-8 md:px-10 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#4f46e5]/20 hover:border-[#4f46e5]/50 transition-colors group overflow-hidden w-full sm:w-auto"
+                  className="relative px-8 md:px-10 py-4 md:py-5 bg-dark/60 backdrop-blur-xl rounded-2xl font-bold flex items-center justify-center gap-3 border border-[#4f46e5]/20 hover:border-[#4f46e5]/50 transition-colors group overflow-hidden w-full sm:w-auto cursor-pointer"
                 >
                   {/* Premium Glow Layers */}
                   <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/0 via-[#4f46e5]/5 to-[#4f46e5]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -296,7 +302,7 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
                   <div className="absolute inset-0 bg-gradient-to-r from-[#4f46e5]/0 via-[#4f46e5]/5 to-[#4f46e5]/0 -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                   <Download size={20} className="group-hover:-translate-y-1 group-hover:scale-110 transition-all duration-300 text-[#4f46e5]" /> 
                   <span className="relative z-10">View Full CV</span>
-                </motion.button>
+                </motion.a>
 
                 <motion.a 
                   href="#projects"
@@ -382,102 +388,81 @@ export default function About({ onShowResume, onSetPortfolioTab }: {
           </div>
         </div>
 
-        {/* Stats Grid - Compact Natural Professional Look */}
+        {/* Stats Grid - Ultra-Compact Micro Metric Cards */}
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ margin: "-50px" }}
           variants={{
-            visible: { transition: { staggerChildren: 0.12 } }
+            visible: { transition: { staggerChildren: 0.1 } }
           }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5"
+          className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-3.5 max-w-4xl mx-auto"
         >
           {stats.map((stat) => (
             <motion.div 
               key={stat.id}
               variants={itemVariants}
               whileHover={{ 
-                y: -5,
-                scale: 1.015,
-                transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] }
+                y: -3,
+                scale: 1.01,
+                transition: { duration: 0.2, ease: "easeOut" }
               }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
                 stat.onClick?.();
               }}
-              className="group relative rounded-2xl p-5 sm:p-5.5 overflow-hidden cursor-pointer transition-all duration-300 backdrop-blur-xl bg-slate-900/60 hover:bg-slate-900/80 border border-white/10 hover:border-cyan-400/40 shadow-lg hover:shadow-cyan-500/10"
+              className="group relative rounded-xl p-3.5 sm:p-4 overflow-hidden cursor-pointer transition-all duration-200 backdrop-blur-xl bg-slate-900/60 hover:bg-slate-900/80 border border-white/10 hover:border-cyan-400/40 shadow-md hover:shadow-cyan-500/10"
             >
               {/* Subtle Natural Background Gradient Tint */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-30 group-hover:opacity-60 transition-opacity duration-300 pointer-events-none`} />
-              
-              {/* Soft Radial Ambient Glow */}
-              <div 
-                className="absolute -bottom-10 -right-10 w-32 h-32 rounded-full blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity duration-500 pointer-events-none"
-                style={{ background: stat.glowColor }}
-              />
+              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-25 group-hover:opacity-50 transition-opacity duration-200 pointer-events-none`} />
 
               {/* Top Row: Icon + Badge + Action Arrow */}
-              <div className="relative z-10 flex items-center justify-between gap-2.5 mb-3.5">
-                <div className="flex items-center gap-2.5">
-                  {/* Clean Icon Box */}
-                  <div className={`w-10 h-10 rounded-xl ${stat.iconBoxBg} border flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300 relative overflow-hidden shrink-0`}>
-                    <stat.icon className="w-5 h-5 relative z-10" />
+              <div className="relative z-10 flex items-center justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2">
+                  {/* Micro Icon Box */}
+                  <div className={`w-7 h-7 rounded-lg ${stat.iconBoxBg} border flex items-center justify-center shadow-xs shrink-0`}>
+                    <stat.icon className="w-3.5 h-3.5 relative z-10" />
                   </div>
 
-                  {/* Clean Status Badge */}
-                  <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-medium tracking-wide uppercase border backdrop-blur-sm ${stat.pillBg}`}>
+                  {/* Micro Status Badge */}
+                  <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-semibold tracking-wider uppercase border backdrop-blur-xs ${stat.pillBg}`}>
                     {stat.id === "experience" ? (
                       <span className="relative flex h-1.5 w-1.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                         <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                       </span>
                     ) : (
-                      <Sparkles size={9} className="text-current opacity-80" />
+                      <Sparkles size={8} className="text-current opacity-80" />
                     )}
                     <span>{stat.badge}</span>
                   </span>
                 </div>
 
-                {/* Micro Action Button */}
-                <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-white/50 group-hover:text-white group-hover:bg-white/10 group-hover:border-white/20 flex items-center justify-center transition-all duration-200 shrink-0">
-                  <ArrowUpRight size={15} className="transform transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                {/* Micro Action Arrow */}
+                <div className="w-5 h-5 rounded-md bg-white/5 border border-white/10 text-white/40 group-hover:text-white group-hover:bg-white/10 flex items-center justify-center transition-colors shrink-0">
+                  <ArrowUpRight size={12} className="transform transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
 
-              {/* Center Stat Counter & Label */}
-              <div className="relative z-10 mb-2">
-                <div className="flex items-baseline gap-1.5">
-                  <div className={`text-3xl sm:text-4xl font-display font-bold tracking-tight bg-gradient-to-r ${stat.textGradient} bg-clip-text text-transparent`}>
-                    <Counter value={stat.value} suffix={stat.suffix} />
-                  </div>
+              {/* Metric Counter & Label */}
+              <div className="relative z-10 flex items-baseline justify-between gap-2 mb-1.5">
+                <div className={`text-2xl sm:text-[26px] font-display font-extrabold tracking-tight bg-gradient-to-r ${stat.textGradient} bg-clip-text text-transparent leading-none`}>
+                  <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
-
-                <h4 className="text-[11px] sm:text-xs font-semibold tracking-wider text-slate-300 uppercase font-display mt-0.5">
+                <h4 className="text-[10px] sm:text-[10.5px] font-semibold tracking-wider text-slate-300 uppercase font-display truncate">
                   {stat.label}
                 </h4>
               </div>
 
-              {/* Subdued Accent Divider */}
-              <div className="relative z-10 w-full h-[2px] bg-white/5 rounded-full overflow-hidden mb-2.5">
-                <div className={`h-full bg-gradient-to-r ${stat.gradient} rounded-full w-1/3 group-hover:w-full transition-all duration-500 ease-out`} />
-              </div>
-
-              {/* Description & Footer */}
-              <div className="relative z-10">
-                <p className="text-slate-400 text-xs leading-relaxed line-clamp-2 mb-3">
-                  {stat.desc}
-                </p>
-
-                {/* Footer Highlights & Action Prompt */}
-                <div className="pt-2.5 border-t border-white/5 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-400 font-normal flex items-center gap-1.5 truncate pr-2">
-                    <CheckCircle2 size={12} className="text-cyan-400/80 shrink-0" />
-                    <span className="truncate">{stat.highlight}</span>
-                  </span>
-                  <span className={`font-medium flex items-center gap-0.5 opacity-90 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200 bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent shrink-0`}>
-                    {stat.actionText} →
-                  </span>
-                </div>
+              {/* Bottom 1-Liner: Highlight & Prompt */}
+              <div className="relative z-10 pt-1.5 border-t border-white/5 flex items-center justify-between text-[10px]">
+                <span className="text-slate-400 font-normal flex items-center gap-1 truncate pr-1">
+                  <CheckCircle2 size={10} className="text-cyan-400/80 shrink-0" />
+                  <span className="truncate">{stat.highlight}</span>
+                </span>
+                <span className={`font-medium flex items-center gap-0.5 opacity-80 group-hover:opacity-100 transition-opacity bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent shrink-0 text-[10px]`}>
+                  {stat.actionText} →
+                </span>
               </div>
             </motion.div>
           ))}

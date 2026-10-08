@@ -103,11 +103,11 @@ export default function Education() {
             }}
             className="relative inline-block"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-white tracking-tight">
+            <h2 className="text-2xl sm:text-[28px] md:text-3xl lg:text-[34px] font-display font-bold text-white tracking-tight leading-tight">
               Education <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-amber-400 bg-clip-text text-transparent inline-block drop-shadow-[0_0_15px_rgba(6,182,212,0.25)]">Timeline</span>
             </h2>
             <div className="absolute -inset-4 bg-cyan-500/20 blur-2xl rounded-full opacity-35 -z-10" />
-            <div className="w-16 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3.5 opacity-80" />
+            <div className="w-12 h-0.5 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-400 rounded-full mx-auto mt-3 opacity-80" />
           </motion.div>
 
           <motion.p 
@@ -115,7 +115,7 @@ export default function Education() {
               hidden: { opacity: 0, y: 15 },
               visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="text-slate-400 text-sm md:text-[15px] font-normal max-w-2xl mx-auto mt-4 leading-relaxed"
+            className="text-slate-400 text-xs sm:text-sm font-normal max-w-xl mx-auto mt-3 leading-relaxed"
           >
             My academic journey and educational milestones that built a rigorous engineering foundation.
           </motion.p>
@@ -167,119 +167,185 @@ export default function Education() {
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* COMPACT & NATURAL PROFESSIONAL EDUCATION TIMELINE                         */}
+        {/* EYE-CATCHING PROFESSIONAL EDUCATION TIMELINE: 1 B.SC CARD + 2x2 GRID      */}
         {/* ========================================================================= */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Subtle Continuous Vertical Rail Line */}
-          <div className="absolute left-5 md:left-6 top-3 bottom-6 w-[2px] bg-gradient-to-b from-cyan-500/60 via-purple-500/30 to-white/10 -translate-x-1/2">
-            <motion.div 
-              animate={{ y: ["0%", "100%"] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-10 left-0 right-0 h-20 w-full bg-gradient-to-b from-transparent via-cyan-400/80 to-transparent shadow-[0_0_8px_rgba(6,182,212,0.8)]"
-            />
-          </div>
+        <div className="max-w-4xl mx-auto space-y-4 md:space-y-5">
+          {/* 1. B.Sc in CSE: Full-Width Single Grid Card */}
+          {(() => {
+            const bscItem = PORTFOLIO_DATA.education[0];
+            const meta = getEducationMeta(bscItem.degree);
+            const IconComponent = meta.icon;
 
-          <div className="space-y-4 md:space-y-4.5 pl-10 md:pl-12">
-            {PORTFOLIO_DATA.education.map((item, i) => {
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-60px" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="relative group cursor-pointer"
+              >
+                <div className="relative rounded-2xl p-5 sm:p-6 backdrop-blur-xl border border-cyan-500/35 bg-gradient-to-br from-[#0c152a]/95 via-[#080e1e]/95 to-[#0b1224]/95 shadow-[0_10px_35px_rgba(0,0,0,0.6),0_0_25px_rgba(6,182,212,0.12)] hover:border-cyan-400/60 hover:shadow-[0_15px_45px_rgba(0,0,0,0.7),0_0_35px_rgba(6,182,212,0.2)] transition-all duration-300 overflow-hidden">
+                  {/* Top Glowing Gradient Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 via-indigo-500 to-purple-500 opacity-80 group-hover:opacity-100 transition-opacity" />
+
+                  {/* Soft Background Radial Ambient Glow */}
+                  <div className="absolute -right-20 -bottom-20 w-60 h-60 bg-cyan-500/10 blur-[70px] rounded-full pointer-events-none group-hover:opacity-100 transition-opacity" />
+
+                  <div className="relative z-10">
+                    {/* Header Row: Level + Milestone + Year */}
+                    <div className="flex flex-wrap items-center justify-between gap-2.5 mb-3.5">
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold tracking-wider uppercase border text-cyan-300 bg-cyan-500/10 border-cyan-500/30">
+                          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                          {meta.level}
+                        </span>
+
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                          <Star size={10} className="fill-amber-300 text-amber-300" />
+                          Flagship Engineering Degree
+                        </span>
+                      </div>
+
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white/[0.04] border border-white/10 text-slate-300 text-[11px] font-mono">
+                        <Calendar size={12} className="text-cyan-400" />
+                        <span>{bscItem.year}</span>
+                      </div>
+                    </div>
+
+                    {/* Degree Title, Institution & CGPA */}
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-3">
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 via-sky-600 to-indigo-600 text-white flex items-center justify-center shadow-md shrink-0">
+                            <IconComponent size={18} />
+                          </div>
+                          <div>
+                            <h3 className="text-lg sm:text-xl font-display font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                              {bscItem.degree}
+                            </h3>
+                            <div className="flex items-center gap-1.5 text-slate-300 text-xs sm:text-sm mt-0.5">
+                              <Building2 size={13} className="text-cyan-400 shrink-0" />
+                              <span>{bscItem.institution}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {bscItem.gpa && (
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-semibold text-emerald-300 shadow-sm w-fit">
+                          <CheckCircle2 size={13} className="text-emerald-400" />
+                          <span className="text-slate-400 font-normal">Academic Score:</span>
+                          <span className="font-bold text-emerald-300">{bscItem.gpa}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Description & Thesis Highlight Box */}
+                    <div className="p-3 rounded-xl bg-white/[0.025] border border-white/5 mb-3.5">
+                      <p className="text-slate-300 text-xs sm:text-[13px] leading-relaxed">
+                        Successfully completed the four-year program with core focus on software engineering.
+                      </p>
+                      <div className="mt-1.5 pt-1.5 border-t border-white/5 flex items-center gap-1.5 text-cyan-200/90 text-xs font-medium">
+                        <Sparkles size={12} className="text-cyan-400 shrink-0" />
+                        <span><strong>Thesis:</strong> A Deep Learning Approach to Emotion Based Music Recommendations</span>
+                      </div>
+                    </div>
+
+                    {/* Curriculum / Skill Tags */}
+                    <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-white/5">
+                      <div className="flex items-center gap-1 text-[10px] text-slate-400 uppercase tracking-wider mr-1 font-mono">
+                        <Layers size={11} className="text-cyan-400/80" />
+                        <span>Major Focus:</span>
+                      </div>
+                      {meta.tags.map((tag, tagIdx) => (
+                        <span 
+                          key={tagIdx}
+                          className="px-2.5 py-0.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/5 text-[10.5px] text-slate-300 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })()}
+
+          {/* 2. Side-by-Side 2x2 Grid (2 cards per line across 2 lines) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+            {PORTFOLIO_DATA.education.slice(1).map((item, idx) => {
               const meta = getEducationMeta(item.degree);
               const IconComponent = meta.icon;
-              const isSelected = selectedId === i;
 
               return (
                 <motion.div
-                  key={i}
+                  key={idx}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => setSelectedId(isSelected ? null : i)}
-                  className="relative group cursor-pointer"
+                  viewport={{ once: false, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative group cursor-pointer h-full"
                 >
-                  {/* Stepper Node Marker */}
-                  <div className="absolute -left-10 md:-left-12 top-4 -translate-x-1/2 flex items-center justify-center">
-                    <div className={`relative w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                      meta.featured 
-                        ? "bg-gradient-to-br from-cyan-500 via-sky-600 to-indigo-600 text-white shadow-[0_0_15px_rgba(6,182,212,0.5)] scale-105" 
-                        : "bg-[#090e1c] border border-white/15 text-slate-300 group-hover:text-cyan-300 group-hover:border-cyan-500/40 group-hover:shadow-[0_0_10px_rgba(6,182,212,0.25)]"
-                    }`}>
-                      <IconComponent size={14} className="transition-transform duration-300 group-hover:scale-110" />
-                    </div>
-                  </div>
-
-                  {/* Compact Professional Timeline Card */}
-                  <div className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-4.5 backdrop-blur-xl border transition-all duration-300 overflow-hidden ${
-                    meta.featured
-                      ? "bg-gradient-to-br from-[#0c1428]/90 via-[#080d1c]/90 to-[#0c1122]/90 border-cyan-500/35 shadow-[0_6px_25px_rgba(0,0,0,0.5)] hover:border-cyan-400/60"
-                      : "bg-[#090e1c]/70 hover:bg-[#0c1326]/90 border-white/10 hover:border-white/20 shadow-md"
-                  }`}>
-                    {/* Top Accent Gradient Line */}
-                    <div className={`absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r ${meta.accent} opacity-50 group-hover:opacity-100 transition-opacity duration-300`} />
+                  <div className="h-full relative rounded-2xl p-4.5 sm:p-5 backdrop-blur-xl border border-white/10 hover:border-cyan-400/40 bg-[#090e1c]/80 hover:bg-[#0c1326] shadow-md hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+                    {/* Top Accent Gradient Border */}
+                    <div className={`absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r ${meta.accent} opacity-60 group-hover:opacity-100 transition-opacity`} />
 
                     <div className="relative z-10">
-                      {/* Header Row: Level Badge & Year */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                        <div className="flex items-center gap-1.5">
-                          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] font-medium tracking-wide uppercase border ${meta.badgeColor}`}>
-                            <span className="w-1 h-1 rounded-full bg-current" />
-                            {meta.level}
-                          </span>
+                      {/* Top Header Row: Category Badge + Year */}
+                      <div className="flex items-center justify-between gap-2 mb-2.5">
+                        <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] font-medium tracking-wide uppercase border ${meta.badgeColor}`}>
+                          <span className="w-1 h-1 rounded-full bg-current" />
+                          {meta.level}
+                        </span>
 
-                          {meta.featured && (
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9.5px] font-semibold tracking-wide uppercase bg-amber-500/15 text-amber-300 border border-amber-500/30">
-                              <Star size={9.5} className="fill-amber-300 text-amber-300" />
-                              Major Milestone
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Year Badge */}
                         <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-slate-400 text-[10.5px] font-mono">
                           <Calendar size={11} className="text-cyan-400" />
                           <span>{item.year}</span>
                         </div>
                       </div>
 
-                      {/* Degree Title */}
-                      <h3 className="text-sm sm:text-base font-display font-bold text-white group-hover:text-cyan-300 transition-colors duration-200 leading-snug">
-                        {item.degree}
-                      </h3>
-
-                      {/* Institution & Performance Chip */}
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 mt-1 mb-2 text-xs">
-                        <div className="flex items-center gap-1 text-slate-300">
-                          <Building2 size={12} className="text-cyan-400 shrink-0" />
-                          <span className="font-normal">{item.institution}</span>
+                      {/* Degree Title with Mini Icon */}
+                      <div className="flex items-start gap-2.5 mb-2">
+                        <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-cyan-400 shrink-0 group-hover:scale-105 transition-transform mt-0.5">
+                          <IconComponent size={15} />
                         </div>
-
-                        {item.gpa && (
-                          <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/25 text-[11px] font-medium text-emerald-300">
-                            <CheckCircle2 size={11} className="text-emerald-400" />
-                            <span className="text-slate-400 text-[10px]">CGPA:</span>
-                            <span className="font-bold text-emerald-300">{item.gpa}</span>
+                        <div>
+                          <h4 className="text-sm sm:text-base font-display font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+                            {item.degree}
+                          </h4>
+                          <div className="flex items-center gap-1 text-slate-400 text-xs mt-0.5">
+                            <Building2 size={11} className="text-cyan-400/80 shrink-0" />
+                            <span className="truncate">{item.institution}</span>
                           </div>
-                        )}
+                        </div>
                       </div>
 
-                      {/* Detailed Description */}
-                      <p className="text-slate-400 text-xs leading-relaxed mb-2.5">
+                      {/* Performance GPA Badge */}
+                      {item.gpa && (
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs font-semibold text-emerald-300 mb-2.5">
+                          <CheckCircle2 size={11} className="text-emerald-400" />
+                          <span className="text-slate-400 text-[10.5px]">Result:</span>
+                          <span className="font-bold text-emerald-300">{item.gpa}</span>
+                        </div>
+                      )}
+
+                      {/* Description */}
+                      <p className="text-slate-400 text-xs leading-relaxed mb-3">
                         {item.description}
                       </p>
+                    </div>
 
-                      {/* Curriculum / Skill Tags */}
-                      <div className="flex flex-wrap items-center gap-1 pt-2 border-t border-white/5">
-                        <div className="flex items-center gap-1 text-[9.5px] text-slate-400 uppercase tracking-wider mr-1 font-mono">
-                          <Layers size={10} className="text-cyan-400/70" />
-                          <span>Focus:</span>
-                        </div>
-                        {meta.tags.map((tag, tagIdx) => (
-                          <span 
-                            key={tagIdx}
-                            className="px-2 py-0.5 rounded bg-white/[0.03] hover:bg-white/[0.07] border border-white/5 text-[10px] text-slate-300/85 transition-colors"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                    {/* Curriculum / Skill Tags */}
+                    <div className="relative z-10 flex flex-wrap items-center gap-1 pt-2 border-t border-white/5 mt-auto">
+                      {meta.tags.map((tag, tagIdx) => (
+                        <span 
+                          key={tagIdx}
+                          className="px-2 py-0.5 rounded bg-white/[0.03] hover:bg-white/[0.07] border border-white/5 text-[10px] text-slate-300/80 transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </motion.div>
