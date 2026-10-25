@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   ArrowLeft, 
@@ -14,19 +14,51 @@ import {
   Terminal,
   Cpu,
   ShieldCheck,
-  Code2
+  Code2,
+  Link as LinkIcon,
+  Check
 } from "lucide-react";
 import { BLOG_POSTS, BlogPost } from "../data/blogData";
 import BlogReaderModal from "./BlogReaderModal";
+import { copyToClipboard } from "../utils/clipboard";
 
 interface BlogPageProps {
   onBack: () => void;
+  initialPostId?: string | null;
 }
 
-export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
+export const BlogPage: React.FC<BlogPageProps> = ({ onBack, initialPostId }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
+  const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Check initialPostId prop or window hash
+    const checkPostFromUrl = () => {
+      const hash = window.location.hash.replace('#', '');
+      let targetId = initialPostId;
+      if (!targetId && hash.startsWith('blog-')) {
+        targetId = hash.replace('blog-', '');
+      }
+      if (targetId) {
+        const found = BLOG_POSTS.find(p => p.id === targetId);
+        if (found) setActivePost(found);
+      }
+    };
+
+    checkPostFromUrl();
+  }, [initialPostId]);
+
+  const handleCopyCardLink = async (postId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const url = `${window.location.origin}${window.location.pathname}#blog-${postId}`;
+    const success = await copyToClipboard(url);
+    if (success) {
+      setCopiedCardId(postId);
+      setTimeout(() => setCopiedCardId(null), 2500);
+    }
+  };
 
   const categories = [
     { id: "All", label: "All Topics" },
@@ -176,10 +208,34 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                       ))}
                     </div>
 
-                    <span className="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
-                      <span>Read Full Story</span>
-                      <ArrowRight size={14} />
-                    </span>
+                    <div className="flex items-center gap-2.5">
+                      <button
+                        onClick={(e) => handleCopyCardLink(featuredPost.id, e)}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
+                          copiedCardId === featuredPost.id
+                            ? "bg-emerald-600 text-white border-emerald-700"
+                            : "bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border-white/10"
+                        }`}
+                        title="শুধুমাত্র এই ব্লগের সরাসরি লিঙ্ক কপি করুন"
+                      >
+                        {copiedCardId === featuredPost.id ? (
+                          <>
+                            <Check size={13} className="text-emerald-300" />
+                            <span>লিংক কপি হয়েছে!</span>
+                          </>
+                        ) : (
+                          <>
+                            <LinkIcon size={13} className="text-cyan-400" />
+                            <span>লিংক কপি</span>
+                          </>
+                        )}
+                      </button>
+
+                      <span className="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 group-hover:translate-x-1 transition-transform">
+                        <span>Read Full Story</span>
+                        <ArrowRight size={14} />
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -365,16 +421,34 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                     ))}
                   </div>
 
-                  {/* Read Article Link */}
+                  {/* Read Article Link & Quick Copy */}
                   <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between mt-auto">
                     <span className="text-xs font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-1.5 transition-colors">
                       <span>Read Article</span>
                       <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                     </span>
 
-                    <span className="text-[11px] text-slate-500 font-medium">
-                      By {post.author.split(" ")[0]}
-                    </span>
+                    <button
+                      onClick={(e) => handleCopyCardLink(post.id, e)}
+                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-all cursor-pointer ${
+                        copiedCardId === post.id
+                          ? "bg-emerald-600 text-white border-emerald-700"
+                          : "bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border-white/10"
+                      }`}
+                      title="শুধুমাত্র এই ব্লগের লিঙ্ক কপি করুন"
+                    >
+                      {copiedCardId === post.id ? (
+                        <>
+                          <Check size={11} className="text-emerald-300" />
+                          <span>কপি হয়েছে</span>
+                        </>
+                      ) : (
+                        <>
+                          <LinkIcon size={11} className="text-cyan-400" />
+                          <span>লিংক কপি</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
               </motion.article>

@@ -27,6 +27,7 @@ import { ArrowUp } from "lucide-react";
 export default function App() {
   const [contentVisible, setContentVisible] = useState(false);
   const [currentView, setCurrentView] = useState<"home" | "resume" | "blog" | "live">("home");
+  const [deepLinkedBlogId, setDeepLinkedBlogId] = useState<string | null>(null);
   const [lastHomeHash, setLastHomeHash] = useState("home");
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -66,42 +67,61 @@ export default function App() {
   };
 
   useEffect(() => {
-    // Clear hash immediately on load to keep URL clean during preloader
-    if (window.location.hash) {
-      window.history.replaceState(null, '', window.location.pathname);
+    const initialRawHash = window.location.hash.replace('#', '');
+    let isBlogLink = false;
+    let targetBlogId: string | null = null;
+
+    if (initialRawHash.startsWith('blog-')) {
+      isBlogLink = true;
+      targetBlogId = initialRawHash.replace('blog-', '');
+      setDeepLinkedBlogId(targetBlogId);
+    } else if (initialRawHash === 'blog') {
+      isBlogLink = true;
     }
 
-    let isInitialLoad = true;
+    // Only clear non-blog hashes on load to keep URL clean during preloader
+    if (window.location.hash && !isBlogLink) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
 
     const handleHashChange = (isInitial?: boolean) => {
       const hash = window.location.hash.replace('#', '');
       
-      // On initial load, we force Home/Hero view as requested by the user
-      // to ensure a clean start at the top of the page.
-      if (isInitial) {
-        setCurrentView('home');
-        if (hash) {
-          window.history.replaceState(null, '', window.location.pathname);
-        }
+      // If direct blog deep-link was opened:
+      if (hash.startsWith('blog-')) {
+        const pId = hash.replace('blog-', '');
+        setDeepLinkedBlogId(pId);
+        setCurrentView('blog');
         window.scrollTo({ top: 0, behavior: 'instant' });
         return;
       }
 
-      /* 
-      // PREVIOUS RESUME VIEW HASH CODE (Commented out as requested - uncomment if internal #resume page is needed):
-      if (hash === 'resume') {
-        setCurrentView('resume');
+      if (hash === 'blog') {
+        setCurrentView('blog');
         window.scrollTo({ top: 0, behavior: 'instant' });
-      } else 
-      */
+        return;
+      }
+
+      // On initial load without a blog link, we default to Home
+      if (isInitial) {
+        if (!isBlogLink) {
+          setCurrentView('home');
+          if (hash) {
+            window.history.replaceState(null, '', window.location.pathname);
+          }
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          return;
+        } else {
+          setCurrentView('blog');
+          return;
+        }
+      }
+
       if (hash === 'resume' || hash === 'cv') {
         // Open official PDF document in a new tab as requested, and stay on home view
         window.open('/CV/Rashidul_Haq_CV.pdf', '_blank');
         setCurrentView('home');
         window.history.replaceState(null, '', window.location.pathname);
-      } else if (hash === 'blog') {
-        setCurrentView('blog');
-        window.scrollTo({ top: 0, behavior: 'instant' });
       } else if (hash === 'live' || hash === 'coming-soon') {
         setCurrentView('live');
         window.scrollTo({ top: 0, behavior: 'instant' });
@@ -358,7 +378,14 @@ export default function App() {
               // <Resume key="resume" onBack={() => toggleView("home")} />
               null
             ) : currentView === "blog" ? (
-              <BlogPage key="blog" onBack={() => toggleView("home")} />
+              <BlogPage 
+                key="blog" 
+                onBack={() => {
+                  setDeepLinkedBlogId(null);
+                  toggleView("home");
+                }} 
+                initialPostId={deepLinkedBlogId} 
+              />
             ) : (
               <ComingSoon 
                 key="live" 

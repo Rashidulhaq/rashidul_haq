@@ -1,8 +1,9 @@
 import { motion, useInView, animate } from "motion/react";
-import { BookOpen, ArrowRight, Sparkles, Clock, Calendar, Eye, Bookmark, FileText } from "lucide-react";
+import { BookOpen, ArrowRight, Sparkles, Clock, Calendar, Eye, Bookmark, FileText, Link as LinkIcon, Check } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import { BLOG_POSTS, BlogPost } from "../data/blogData";
 import BlogReaderModal from "./BlogReaderModal";
+import { copyToClipboard } from "../utils/clipboard";
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -27,6 +28,18 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 
 export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }) {
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
+  const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
+
+  const handleCopyCardLink = async (postId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const url = `${window.location.origin}${window.location.pathname}#blog-${postId}`;
+    const success = await copyToClipboard(url);
+    if (success) {
+      setCopiedCardId(postId);
+      setTimeout(() => setCopiedCardId(null), 2500);
+    }
+  };
+
   // Show top 3 preview posts
   const previewPosts = BLOG_POSTS.slice(0, 3);
 
@@ -234,15 +247,34 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
                   {post.description}
                 </p>
 
-                {/* Read Article Link */}
+                {/* Read Article Link & Quick Copy */}
                 <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between mt-auto">
                   <span className="text-xs font-bold text-cyan-400 group-hover:text-cyan-300 flex items-center gap-1.5 transition-colors">
                     <span>Read Article</span>
                     <ArrowRight size={13} className="group-hover:translate-x-1.5 transition-transform" />
                   </span>
-                  <span className="text-[11px] text-slate-500 font-medium">
-                    By {post.author.split(" ")[0]}
-                  </span>
+
+                  <button
+                    onClick={(e) => handleCopyCardLink(post.id, e)}
+                    className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-semibold border transition-all cursor-pointer ${
+                      copiedCardId === post.id
+                        ? "bg-emerald-600 text-white border-emerald-700"
+                        : "bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border-white/10"
+                    }`}
+                    title="শুধুমাত্র এই ব্লগের লিঙ্ক কপি করুন"
+                  >
+                    {copiedCardId === post.id ? (
+                      <>
+                        <Check size={11} className="text-emerald-300" />
+                        <span>কপি হয়েছে</span>
+                      </>
+                    ) : (
+                      <>
+                        <LinkIcon size={11} className="text-cyan-400" />
+                        <span>লিংক কপি</span>
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
             </motion.article>
