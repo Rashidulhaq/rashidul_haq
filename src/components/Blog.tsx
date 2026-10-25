@@ -1,7 +1,8 @@
 import { motion, useInView, animate } from "motion/react";
 import { BookOpen, ArrowRight, Sparkles, Clock, Calendar, Eye, Bookmark, FileText } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
-import { BLOG_POSTS } from "../data/blogData";
+import { BLOG_POSTS, BlogPost } from "../data/blogData";
+import BlogReaderModal from "./BlogReaderModal";
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
 }
 
 export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }) {
+  const [activePost, setActivePost] = useState<BlogPost | null>(null);
   // Show top 3 preview posts
   const previewPosts = BLOG_POSTS.slice(0, 3);
 
@@ -52,7 +54,7 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-[11px] font-semibold tracking-wider uppercase mb-3.5 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.12)]"
           >
             <BookOpen size={13} className="text-cyan-400" />
-            <span>Thoughts & Writing • Tech Articles</span>
+            <span>Thoughts & Writing • Articles & Reflections</span>
           </motion.div>
 
           <motion.div
@@ -179,7 +181,7 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
                 scale: 1.015,
                 transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } 
               }}
-              onClick={onShowFullBlog}
+              onClick={() => setActivePost(post)}
               className="group relative flex flex-col h-full rounded-2xl overflow-hidden bg-[#090d18]/90 border border-white/[0.08] hover:border-cyan-400/50 shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_25px_rgba(6,182,212,0.2)] backdrop-blur-xl transition-all duration-300 cursor-pointer"
             >
               {/* Light sweep shimmer effect */}
@@ -261,6 +263,13 @@ export default function Blog({ onShowFullBlog }: { onShowFullBlog?: () => void }
           </motion.button>
         </div>
       </div>
+
+      {/* Reader Modal */}
+      <BlogReaderModal 
+        post={activePost} 
+        isOpen={!!activePost} 
+        onClose={() => setActivePost(null)} 
+      />
     </section>
   );
 }

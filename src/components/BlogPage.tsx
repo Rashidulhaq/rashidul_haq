@@ -30,6 +30,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
 
   const categories = [
     { id: "All", label: "All Topics" },
+    { id: "Islamic & Life Reflections", label: "Islamic & Life" },
     { id: "AI & Machine Learning", label: "AI & ML" },
     { id: "Software Testing & QA", label: "Software Testing / QA" },
     { id: "Web Development & PWA", label: "Web Dev & PWA" },
@@ -193,7 +194,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({ onBack }) => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#090d18] via-transparent to-transparent opacity-60" />
                   <div className="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#050814]/90 backdrop-blur-md border border-cyan-400/30 text-cyan-300 text-[11px] font-semibold flex items-center gap-1.5 shadow-lg">
                     <Sparkles size={11} />
-                    <span>Thesis Research</span>
+                    <span>{featuredPost.tags[0] || "Featured Story"}</span>
                   </div>
                 </div>
               </div>
